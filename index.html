@@ -41,6 +41,16 @@ footer a{color:var(--mute)}
 input[type=range]{flex:1;min-width:120px;accent-color:#fff;height:44px}
 .txt{font-size:13px;line-height:1.5;margin:6px 0}
 .lay{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+/* cursor seta no mapa (não mão/grab); botões/links ficam com pointer */
+.maplibregl-canvas-container.maplibregl-interactive,
+.maplibregl-canvas-container.maplibregl-interactive canvas,
+.maplibregl-canvas { cursor: default !important; }
+.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer,
+.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer canvas,
+.maplibregl-canvas-container.maplibregl-interactive:active,
+.maplibregl-canvas-container.maplibregl-interactive:active canvas,
+.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer:active,
+.maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer:active canvas { cursor: default !important; }
 @media (max-width:760px){
  header{padding:10px 12px}header h1{font-size:13px;letter-spacing:.35em}
  #right{display:none}
