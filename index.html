@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-PT"><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MADEIRA 3D — RELEVO · METEO</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+:root{--fg:#f2f4f7;--mute:#8a93a0;--line:rgba(255,255,255,.18);--acc:#e8eef6}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;color:var(--fg);font-family:"Helvetica Neue",Inter,Arial,sans-serif;font-weight:300;overflow:hidden}
+#map{position:fixed;inset:0;opacity:0;transition:opacity 1.6s ease}#map.on{opacity:1}
+.up{text-transform:uppercase;letter-spacing:.28em;font-size:11px}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;z-index:5;background:linear-gradient(#000c,#0000)}
+header h1{margin:0;font-weight:200;letter-spacing:.5em;font-size:18px}
+a{color:var(--fg)}
+.b112{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #ff4b4b;color:#fff;text-decoration:none;letter-spacing:.25em;font-size:13px;background:#ff4b4b22}
+.panel{position:fixed;z-index:5;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);border:1px solid var(--line);padding:16px 18px;transition:opacity .6s,transform .6s}
+.panel h2{margin:0 0 10px;font-weight:300;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line);padding-bottom:8px}
+.panel:before,.panel:after{content:"";position:absolute;width:10px;height:10px;border:1px solid var(--acc)}
+.panel:before{top:-1px;left:-1px;border-right:0;border-bottom:0}.panel:after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+#left{left:24px;top:84px;width:22rem;max-height:calc(100% - 140px);overflow:auto}
+#right{right:24px;top:84px;width:20rem;max-height:calc(100% - 140px);overflow:auto}
+.row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.row small{color:var(--mute);font-size:10px;letter-spacing:.15em}
+.old{color:#666!important}.old *{color:#666!important}
+.peaks{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+button{font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);min-height:44px;padding:0 12px;text-transform:uppercase;letter-spacing:.2em;font-size:10px;cursor:pointer}
+button.on,button:hover{border-color:var(--fg);background:#ffffff14}
+footer{position:fixed;bottom:0;left:0;right:0;z-index:5;padding:8px 24px;font-size:10px;color:var(--mute);letter-spacing:.12em;background:linear-gradient(#0000,#000d)}
+footer a{color:var(--mute)}
+.hud{position:fixed;inset:0;pointer-events:none;z-index:4}
+.hud .c{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px;border:1px solid #ffffff40;border-radius:50%}
+.hud .c:after{content:"";position:absolute;left:50%;top:-14px;bottom:-14px;border-left:1px solid #ffffff30}
+.hud .c:before{content:"";position:absolute;top:50%;left:-14px;right:-14px;border-top:1px solid #ffffff30}
+#tele{position:fixed;left:50%;transform:translateX(-50%);bottom:44px;z-index:5;font-size:10px;letter-spacing:.25em;color:var(--mute);white-space:nowrap}
+.lbl{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-shadow:0 0 4px #000;pointer-events:none}
+.lbl:before{content:"";display:block;width:6px;height:6px;border:1px solid #fff;margin:0 auto 4px;transform:rotate(45deg)}
+.note{font-size:11px;color:var(--mute);line-height:1.5;margin-top:10px}
+.maplibregl-ctrl-top-right{top:5.5rem}
+:root{--fh:34px}
+.ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+input[type=range]{flex:1;min-width:120px;accent-color:#fff;height:44px}
+.txt{font-size:13px;line-height:1.5;margin:6px 0}
+.lay{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+@media (max-width:760px){
+ header{padding:10px 12px}header h1{font-size:13px;letter-spacing:.35em}
+ #right{display:none}
+ #left{left:0;right:0;top:auto;bottom:var(--fh);width:auto;max-height:38%;border-left:0;border-right:0}
+ #tele{display:none}footer{padding:6px 12px;font-size:9px;line-height:1.35;background:#000}
+}
+</style></head><body>
+<div id="map"></div>
+<div class="hud"><div class="c"></div></div>
+<header><h1>MADEIRA&nbsp;3D</h1><a class="b112" href="tel:112" aria-label="Ligar 112">SOS&nbsp;112</a></header>
+<section id="left" class="panel">
+ <h2>Picos</h2><div class="peaks" id="peaks"></div>
+ <h2>Sol e sombra · <span id="ptname">Pico do Areeiro</span></h2>
+ <div class="ctl"><input type="range" id="hr" min="0" max="23" step="1" aria-label="Hora"><button id="m00">:00</button><button id="m30">:30</button><button id="now">Agora</button></div>
+ <div id="sun" class="txt">A calcular…</div><div id="shade" class="txt"></div>
+ <h2>Pontos OpenStreetMap</h2>
+ <div class="lay"><button id="lyPosts" class="on">Postos</button><button id="lyView" class="on">Miradouros</button><button id="lyAid" class="on">Socorro</button><button id="lyAnt">Antenas</button></div>
+ <div id="near" class="txt">A ler o OpenStreetMap…</div><div id="net" class="txt"></div>
+ <h2>Avisos IPMA · Madeira</h2><div id="warn" class="row">A ler…</div>
+ <h2 style="margin-top:14px">Previsão Open-Meteo · <span id="fcname">Pico do Areeiro</span></h2><div id="fc">A ler…</div>
+ <p class="note">Informação de ajuda. Não substitui o IPMA, o IFCN nem a Proteção Civil. Confirmar no local. Hora: Atlantic/Madeira. Valores com mais de 3 h ficam a cinzento.</p>
+</section>
+<section id="right" class="panel"><h2>Estações IPMA · última observação</h2><div id="st">A ler…</div></section>
+<div id="tele"></div>
+<footer>FONTES: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> (ODbL) ·
+<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ·
+Relevo: <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Terrain Tiles</a> (Mapzen, AWS Open Data; <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener">atribuição</a>): SRTM e GMTED2010 cortesia do U.S. Geological Survey; ETOPO1 U.S. NOAA; dados da Europa produzidos com dados e informação Copernicus financiados pela União Europeia (EU-DEM) ·
+<a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0, não comercial) ·
+<a href="https://www.ipma.pt" target="_blank" rel="noopener">IPMA</a> (dados abertos)</footer>
+<script>
+const TZ="Atlantic/Madeira",OLD=3*3600e3;
+const fmt=d=>new Intl.DateTimeFormat("pt-PT",{timeZone:TZ,hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"}).format(d);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const age=d=>Date.now()-d>OLD?" old":"";
+/* Picos: dados do PDF «GIGIO 3d» (Wikidata / Wikipédia / OSM) */
+const PEAKS=[
+{id:"ruivo",name:"Pico Ruivo",elev:1862,lat:32.758733333333,lon:-16.942255555556,src:"Wikidata Q473169"},
+{id:"torres",name:"Pico das Torres",elev:1853,lat:32.750469444444,lon:-16.938261111111,src:"Wikidata Q775217"},
+{id:"areeiro",name:"Pico do Areeiro",elev:1818,lat:32.735555555556,lon:-16.928888888889,src:"Wikidata Q1192102"},
+{id:"paul",name:"Pico Ruivo do Paul",elev:1639,lat:32.77777778,lon:-17.07916667,src:"Wikidata Q17591066"},
+{id:"facho",name:"Pico do Facho",elev:516,lat:33.08439,lon:-16.32324,src:"Wikipédia"},
+{id:"castelo",name:"Pico do Castelo",elev:null,lat:33.0778839,lon:-16.3342981,src:"OpenStreetMap"}];
+const short=n=>n.replace(/^Pico /,"").replace(/^do /,"").replace(/^das /,"");
+const map=new maplibregl.Map({container:"map",style:"https://tiles.openfreemap.org/styles/dark",
+ center:[-16.95,32.75],zoom:8.6,pitch:0,bearing:0,maxPitch:85,
+ maxBounds:[[-17.45,32.5],[-16.15,33.2]],attributionControl:{compact:true}});
+map.addControl(new maplibregl.NavigationControl({visualizePitch:true}),"top-right");
+map.on("load",()=>{
+ map.addSource("dem",{type:"raster-dem",tiles:["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],encoding:"terrarium",tileSize:256,maxzoom:13,
+  attribution:'Relevo: <a href="https://registry.opendata.aws/terrain-tiles/">Terrain Tiles (Mapzen/AWS)</a> · USGS · NOAA · Copernicus EU-DEM'});
+ map.setTerrain({source:"dem",exaggeration:1.45});
+ map.addLayer({id:"hs",type:"hillshade",source:"dem",paint:{"hillshade-shadow-color":"#000","hillshade-highlight-color":"#9aa4b1","hillshade-accent-color":"#222","hillshade-exaggeration":.5}});
+ if(map.setSky)try{map.setSky({"sky-color":"#000","horizon-color":"#0b0f16","fog-color":"#000","sky-horizon-blend":.6,"horizon-fog-blend":.6,"fog-ground-blend":.3})}catch(e){}
+ document.getElementById("map").classList.add("on");
+ /* voo de entrada: Pico do Areeiro, zoom 12.1, pitch 64, bearing −24 (PDF) */
+ setTimeout(()=>map.flyTo({center:[-16.928888888889,32.735555555556],zoom:12.1,pitch:64,bearing:-24,duration:6000,essential:true}),400);
+});
+const pb=document.getElementById("peaks");
+PEAKS.forEach(p=>{
+ const el=document.createElement("div");el.className="lbl";el.textContent=short(p.name)+(p.elev?" · "+p.elev+" m":"");
+ new maplibregl.Marker({element:el,anchor:"bottom"}).setLngLat([p.lon,p.lat]).addTo(map);
+ const b=document.createElement("button");b.textContent=short(p.name);b.title=p.name+" — "+(p.elev?p.elev+" m":"altitude por confirmar")+" · "+p.src;
+ b.onclick=()=>{[...pb.children].forEach(x=>x.classList.remove("on"));b.classList.add("on");
+  map.flyTo({center:[p.lon,p.lat],zoom:13,pitch:66,duration:3500,essential:true});loadFc(p.lat,p.lon,p.name);setPt(p.lat,p.lon,p.name)};
+ pb.appendChild(b);
+});
+map.on("move",()=>{const c=map.getCenter();document.getElementById("tele").textContent=
+ `LAT ${c.lat.toFixed(4)} · LON ${c.lng.toFixed(4)} · ZOOM ${map.getZoom().toFixed(1)} · PITCH ${map.getPitch().toFixed(0)}° · RUMO ${map.getBearing().toFixed(0)}°`});
+/* Avisos IPMA */
+const ZONES={MCN:"Costa Norte",MCS:"Costa Sul",MRM:"Regiões montanhosas",MPS:"Porto Santo"};
+async function loadWarn(){const w=document.getElementById("warn");
+ try{const r=await fetch("https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json");const j=await r.json();const now=new Date();
+  const act=j.filter(a=>ZONES[a.idAreaAviso]&&["yellow","orange","red"].includes(a.awarenessLevelID)&&new Date(a.endTime)>now);
+  w.innerHTML=act.length?act.map(a=>`<div>${ZONES[a.idAreaAviso]}: ${esc(a.awarenessTypeName)} (${esc(a.awarenessLevelID)}) <small>${fmt(new Date(a.startTime))}–${fmt(new Date(a.endTime))}</small></div>`).join("")+`<small>Lido às ${fmt(now)}. O aviso do IPMA fica como está. Não é uma ordem para ir ou ficar.</small>`
+   :`<span>Sem aviso amarelo, laranja ou vermelho nas quatro zonas da Madeira. <small>Lido às ${fmt(now)}.</small></span>`;
+ }catch(e){w.textContent="Avisos do IPMA indisponíveis nesta leitura."}}
+/* Estações IPMA */
+async function loadSt(){const box=document.getElementById("st");
+ try{const [s,o]=await Promise.all([fetch("https://api.ipma.pt/open-data/observation/meteorology/stations/stations.json").then(r=>r.json()),
+   fetch("https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json").then(r=>r.json())]);
+  const mad=s.filter(f=>{const[x,y]=f.geometry.coordinates;return x>-17.45&&x<-16.15&&y>32.5&&y<33.2});
+  const times=Object.keys(o).sort();const rows=[];const feats=[];
+  for(const f of mad){const id=String(f.properties.idEstacao);let last=null,t=null;
+   for(const k of times){const v=o[k][id];if(v&&v.temperatura!=null&&v.temperatura>-99){last=v;t=k}}
+   if(!last)continue;const d=new Date(t+(t.endsWith("Z")?"":"Z"));/* IPMA: hora UTC */
+   rows.push({n:f.properties.localEstacao,v:last,d});feats.push({type:"Feature",geometry:f.geometry,properties:{n:f.properties.localEstacao,t:last.temperatura,old:Date.now()-d>OLD}});}
+  rows.sort((a,b)=>a.n.localeCompare(b.n,"pt"));
+  box.innerHTML=rows.length?rows.map(r=>`<div class="row${age(r.d)}"><span>${esc(r.n)}<br><small>${fmt(r.d)}</small></span><span>${r.v.temperatura} °C${r.v.humidade>=0?" · "+r.v.humidade+" %":""}${r.v.intensidadeVentoKM>=0?" · "+r.v.intensidadeVentoKM+" km/h":""}</span></div>`).join(""):"Sem observações das estações da Madeira nesta leitura.";
+  const add=()=>{if(map.getSource("st"))map.getSource("st").setData({type:"FeatureCollection",features:feats});else{
+   map.addSource("st",{type:"geojson",data:{type:"FeatureCollection",features:feats}});
+   map.addLayer({id:"st",type:"circle",source:"st",paint:{"circle-radius":5,"circle-color":"#000","circle-stroke-width":1.5,"circle-stroke-color":["case",["get","old"],"#666","#fff"]}});
+   map.addLayer({id:"stl",type:"symbol",source:"st",layout:{"text-field":["concat",["to-string",["get","t"]]," °C"],"text-size":10,"text-offset":[0,1.2],"text-font":["Noto Sans Regular"]},paint:{"text-color":["case",["get","old"],"#666","#fff"],"text-halo-color":"#000","text-halo-width":1}});}};
+  map.loaded()?add():map.once("load",add);
+ }catch(e){box.textContent="Estações do IPMA indisponíveis nesta leitura."}}
+/* Previsão Open-Meteo */
+async function loadFc(lat=32.735555555556,lon=-16.928888888889,name="Pico do Areeiro"){const box=document.getElementById("fc");document.getElementById("fcname").textContent=name;
+ try{const j=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,precipitation,cloud_cover&hourly=temperature_2m,precipitation_probability,wind_gusts_10m&forecast_hours=15&timezone=UTC&timeformat=unixtime`).then(r=>r.json());
+  const c=j.current,d=new Date(c.time*1000);
+  let h=`<div class="row${age(d)}"><span>Agora (modelo)<br><small>${fmt(d)}</small></span><span>${c.temperature_2m} °C · ${c.relative_humidity_2m} % · vento ${c.wind_speed_10m} km/h · rajada ${c.wind_gusts_10m} km/h · nuvens ${c.cloud_cover} %</span></div>`;
+  const h0=c.time-(c.time%3600);let k=0;j.hourly.time.forEach((t,i)=>{if(t<h0||(k++)%3||k>13)return;h+=`<div class="row"><small>${fmt(new Date(t*1000))}</small><span>${j.hourly.temperature_2m[i]} °C · prob. chuva ${j.hourly.precipitation_probability[i]??"—"} % · rajada ${j.hourly.wind_gusts_10m[i]} km/h</span></div>`});
+  box.innerHTML=h+`<small>Previsão de modelo, não observação. Altitude do modelo: ${j.elevation} m.</small>`;
+ }catch(e){box.textContent="Previsão Open-Meteo indisponível nesta leitura."}}
+
+/* ===== Relevo amostrado (Terrarium, AWS) — fórmula do PDF ===== */
+const tc=new Map();
+function tileOf(lat,lon,z){const n=2**z,xf=(lon+180)/360*n,lr=lat*Math.PI/180,yf=(1-Math.log(Math.tan(lr)+1/Math.cos(lr))/Math.PI)/2*n,x=Math.floor(xf),y=Math.floor(yf);
+ return{x,y,i:Math.min(255,Math.floor((xf-x)*256)),j:Math.min(255,Math.floor((yf-y)*256))}}
+function tile(z,x,y){const k=z+"/"+x+"/"+y;if(tc.has(k))return tc.get(k);
+ const pr=new Promise(res=>{const im=new Image();im.crossOrigin="anonymous";im.onload=()=>{const c=document.createElement("canvas");c.width=c.height=256;const g=c.getContext("2d",{willReadFrequently:true});g.drawImage(im,0,0);res(g.getImageData(0,0,256,256))};im.onerror=()=>res(null);
+  im.src=`https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${k}.png`});tc.set(k,pr);return pr}
+async function elev(lat,lon){for(const z of[12,11,10]){const{x,y,i,j}=tileOf(lat,lon,z);const d=await tile(z,x,y);if(!d)continue;const q=(j*256+i)*4,v=d.data[q]*256+d.data[q+1]+d.data[q+2]/256-32768;if(v>-500&&v<9000)return v}return null}
+function dest(lat,lon,b,m){const R=6371000,d=m/R,t=b*Math.PI/180,p1=lat*Math.PI/180,l1=lon*Math.PI/180,p2=Math.asin(Math.sin(p1)*Math.cos(d)+Math.cos(p1)*Math.sin(d)*Math.cos(t)),l2=l1+Math.atan2(Math.sin(t)*Math.sin(d)*Math.cos(p1),Math.cos(d)-Math.sin(p1)*Math.sin(p2));return{lat:p2*180/Math.PI,lon:l2*180/Math.PI}}
+function hav(a,b,c,d){const R=6371000,r=Math.PI/180,h=Math.sin((c-a)*r/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin((d-b)*r/2)**2;return 2*R*Math.asin(Math.min(1,Math.sqrt(h)))}
+/* ===== Sol: cálculo astronómico (PDF; obliquidade 23.4397°) ===== */
+function sunPos(date,lat,lon){const RAD=Math.PI/180,e=RAD*23.4397,days=date.valueOf()/864e5-0.5+2440588-2451545,M=RAD*(357.5291+0.98560028*days),
+ C=RAD*(1.9148*Math.sin(M)+0.02*Math.sin(2*M)+0.0003*Math.sin(3*M)),L=M+C+RAD*102.9372+Math.PI,dec=Math.asin(Math.sin(e)*Math.sin(L)),ra=Math.atan2(Math.sin(L)*Math.cos(e),Math.cos(L)),
+ H=RAD*(280.16+360.9856235*days)-RAD*(-lon)-ra,ph=lat*RAD,alt=Math.asin(Math.sin(ph)*Math.sin(dec)+Math.cos(ph)*Math.cos(dec)*Math.cos(H)),
+ az=Math.atan2(Math.sin(H),Math.cos(H)*Math.sin(ph)-Math.tan(dec)*Math.cos(ph));return{alt:alt/RAD,az:((az/RAD+180)%360+360)%360}}
+/* hora de parede da Madeira -> UTC (não usa o fuso do aparelho) */
+function madeiraToUTC(y,mo,d,h,mi){let g=Date.UTC(y,mo-1,d,h,mi);for(let k=0;k<2;k++){const p=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:TZ,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(new Date(g)).map(x=>[x.type,x.value]));
+ const w=Date.UTC(+p.year,p.month-1,+p.day,+p.hour,+p.minute);g+=Date.UTC(y,mo-1,d,h,mi)-w}return new Date(g)}
+function madNow(){const p=Object.fromEntries(new Intl.DateTimeFormat("en-GB",{timeZone:TZ,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(new Date()).map(x=>[x.type,x.value]));return{y:+p.year,mo:+p.month,d:+p.day,h:+p.hour,mi:+p.minute}}
+const st={lat:32.735555555556,lon:-16.928888888889,name:"Pico do Areeiro",h:0,m:0};
+const N0=madNow();st.h=N0.h;st.m=N0.mi>=30?30:0;
+const hr=document.getElementById("hr");hr.value=st.h;
+const pad=n=>String(n).padStart(2,"0");
+const nf=n=>n.toFixed(1).replace(".",",");
+let sunSeq=0;
+async function updSun(){const my=++sunSeq;const t=madeiraToUTC(N0.y,N0.mo,N0.d,st.h,st.m),s=sunPos(t,st.lat,st.lon),hh=pad(st.h)+":"+pad(st.m);
+ document.getElementById("m00").classList.toggle("on",st.m==0);document.getElementById("m30").classList.toggle("on",st.m==30);
+ const up=s.alt>0,sun=document.getElementById("sun"),sh=document.getElementById("shade");
+ sun.textContent=up?`Às ${hh}, hora da Madeira, o sol está ${Math.round(s.alt)}° acima do horizonte, azimute ${Math.round(s.az)}° (norte = 0, sentido horário). É cálculo, não uma foto.`
+  :`Às ${hh}, hora da Madeira, o sol está abaixo do horizonte (${Math.round(s.alt)}°).`;
+ const end=dest(st.lat,st.lon,s.az,up?7000:2000);
+ const fc={type:"FeatureCollection",features:[{type:"Feature",geometry:{type:"LineString",coordinates:[[st.lon,st.lat],[end.lon,end.lat]]}},{type:"Feature",geometry:{type:"Point",coordinates:[st.lon,st.lat]}}]};
+ if(map.getSource("sun"))map.getSource("sun").setData(fc);
+ try{map.setLight({anchor:"map",position:[1.15,s.az,Math.min(180,Math.max(0,90-s.alt))],intensity:up?.65:.12})}catch(e){}
+ if(!up){sh.textContent="Sem sol neste ponto a esta hora. A linha mostra a direção, não uma sombra medida.";return}
+ sh.textContent="A amostrar o relevo…";const e0=await elev(st.lat,st.lon);if(my!==sunSeq)return;
+ if(e0==null){sh.textContent="Sem relevo neste ponto: não dá para estimar a sombra.";return}
+ const tan=Math.tan(s.alt*Math.PI/180);let hit=null;
+ for(const dm of[200,450,800,1200,1800,2600]){const q=dest(st.lat,st.lon,s.az,dm),e=await elev(q.lat,q.lon);if(e!=null&&e>e0+dm*tan+12){hit=dm;break}}
+ if(my!==sunSeq)return;
+ sh.textContent=hit?`Estimativa: a encosta tapa o sol, a cerca de ${hit} m na direção do sol. O relevo é um modelo (Terrain Tiles), não uma medição no local.`
+  :"Estimativa: o sol chega a este ponto. O relevo é um modelo, não uma medição no local.";updNear()}
+hr.oninput=()=>{st.h=+hr.value;updSun()};
+document.getElementById("m00").onclick=()=>{st.m=0;updSun()};document.getElementById("m30").onclick=()=>{st.m=30;updSun()};
+document.getElementById("now").onclick=()=>{const n=madNow();st.h=n.h;st.m=n.mi>=30?30:0;hr.value=st.h;updSun()};
+function setPt(lat,lon,name){st.lat=lat;st.lon=lon;st.name=name;document.getElementById("ptname").textContent=name;updSun();updNear()}
+map.on("click",e=>{[...pb.children].forEach(x=>x.classList.remove("on"));setPt(e.lngLat.lat,e.lngLat.lng,`${e.lngLat.lat.toFixed(4)}, ${e.lngLat.lng.toFixed(4)}`);loadFc(e.lngLat.lat,e.lngLat.lng,"ponto escolhido")});
+/* ===== OpenStreetMap via Overpass (cache local de 1 h; nada inventado) ===== */
+let OSM=null;
+function ops(raw){const o=new Set();(raw||"").split(/[;,/|]/).map(x=>x.trim().toLowerCase()).forEach(x=>{if(!x)return;if(x.includes("vodafone"))o.add("Vodafone");else if(x.includes("digi"))o.add("DIGI");else if(x==="nos"||x.includes("optimus")||x.startsWith("nos "))o.add("NOS");else if(x.includes("meo")||x.includes("altice")||x.includes("tmn"))o.add("MEO")});return[...o]}
+function parseOSM(j,snap){const o={at:snap?Date.parse(j.osm3s.timestamp_osm_base):Date.now(),snap,fuel:[],view:[],aid:[],ant:[]};
+ for(const el of j.elements||[]){const lat=el.lat??el.center?.lat,lon=el.lon??el.center?.lon;if(lat==null)continue;const t=el.tags||{};
+  if(t.amenity==="fuel")o.fuel.push({n:t.name||t.brand||"Posto sem nome",b:t.brand||null,lat,lon});
+  else if(t.tourism==="viewpoint")o.view.push({n:t.name||"Miradouro sem nome",lat,lon});
+  else if(/^(hospital|clinic|fire_station)$/.test(t.amenity||"")||t.emergency==="ambulance_station")o.aid.push({n:t.name||({hospital:"Hospital",clinic:"Centro de saúde/clínica",fire_station:"Bombeiros"}[t.amenity]||"Ambulâncias")+" (sem nome no OSM)",lat,lon});
+  else if(/^(mast|tower|communications_tower)$/.test(t.man_made||"")){const op=ops(t.operator||t.communication||t.network);if(op.length)o.ant.push({op,lat,lon})}}
+ return o}
+const OSMKEY="madeira3d-osm-v2";
+async function loadOSM(){
+ try{const c=JSON.parse(localStorage.getItem(OSMKEY)||"null");if(c&&Date.now()-c.at<3600e3){OSM=c;return}}catch(e){}
+ /* 1) cópia real do OSM guardada com o site (mostra logo); 2) leitura em direto substitui-a se responder */
+ try{const r=await fetch("osm-snapshot.json");if(r.ok)OSM=parseOSM(await r.json(),true)}catch(e){}
+ if(!OSM)OSM={at:Date.now(),fuel:[],view:[],aid:[],ant:[],error:"sem dados"};
+ liveOSM()}
+async function liveOSM(){
+ const B=["(32.62,-17.30,32.90,-16.62)","(33.02,-16.42,33.12,-16.27)"];
+ const q="[out:json][timeout:25];("+B.map(b=>`node["amenity"="fuel"]${b};node["tourism"="viewpoint"]${b};nwr["amenity"~"^(hospital|clinic)$"]${b};nwr["emergency"="ambulance_station"]${b};nwr["amenity"="fire_station"]${b};node["man_made"~"^(mast|tower|communications_tower)$"]${b};`).join("")+");out center tags;";
+ try{const r=await fetch("https://overpass-api.de/api/interpreter",{signal:AbortSignal.timeout(25000),method:"POST",body:"data="+encodeURIComponent(q),headers:{"Content-Type":"application/x-www-form-urlencoded"}});
+  if(!r.ok)return;OSM=parseOSM(await r.json(),false);try{localStorage.setItem(OSMKEY,JSON.stringify(OSM))}catch(e){}
+  onLoaded(()=>{for(const k of Object.values(LAY))if(map.getSource(k))map.getSource(k).setData(gj(OSM[k],k==="ant"?x=>x.op.join(", "):null))});updNear()
+ }catch(e){/* fica a cópia guardada, com a data dela */}}
+const gj=(a,f)=>({type:"FeatureCollection",features:a.map(x=>({type:"Feature",geometry:{type:"Point",coordinates:[x.lon,x.lat]},properties:{n:f?f(x):x.n}}))});
+const LAY={lyPosts:"fuel",lyView:"view",lyAid:"aid",lyAnt:"ant"};
+function addOSM(){const col={fuel:"#ffb347",view:"#9fd3ff",aid:"#ff4b4b",ant:"#bbbbbb"};
+ for(const[btn,k]of Object.entries(LAY)){map.addSource(k,{type:"geojson",data:gj(OSM[k],k==="ant"?x=>x.op.join(", "):null)});
+  map.addLayer({id:k,type:"circle",source:k,layout:{visibility:document.getElementById(btn).classList.contains("on")?"visible":"none"},paint:{"circle-radius":k==="ant"?2.5:4,"circle-color":col[k],"circle-stroke-color":"#000","circle-stroke-width":1}});
+  map.on("click",k,e=>{new maplibregl.Popup({closeButton:false}).setLngLat(e.lngLat).setHTML(`<span style="color:#000">${esc(e.features[0].properties.n)}<br><small>OpenStreetMap</small></span>`).addTo(map)});
+  document.getElementById(btn).onclick=ev=>{const b=ev.currentTarget;b.classList.toggle("on");map.setLayoutProperty(k,"visibility",b.classList.contains("on")?"visible":"none")}}}
+function nearest(a){let best=null,d=1/0;for(const x of a){const h=hav(st.lat,st.lon,x.lat,x.lon);if(h<d){d=h;best=x}}return best?{x:best,d}:null}
+let netSeq=0;
+async function updNear(){if(!OSM)return;const el=document.getElementById("near"),ne=document.getElementById("net");
+ if(OSM.error){el.textContent="OpenStreetMap indisponível nesta leitura (sem leitura em direto nem cópia guardada).";ne.textContent="";return}
+ const lido=OSM.snap?` Cópia guardada do OSM (dados de ${fmt(new Date(OSM.at))}); a leitura em direto falhou.`:` Lido às ${fmt(new Date(OSM.at))}.`;
+ const f=nearest(OSM.fuel),a=nearest(OSM.aid),v=nearest(OSM.view);
+ el.innerHTML=[f&&`Posto: ${esc(f.x.n)}${f.x.b&&f.x.b!==f.x.n?", "+esc(f.x.b):""}, a ${nf(f.d/1000)} km em linha reta.`,a&&`Socorro: ${esc(a.x.n)}, a ${nf(a.d/1000)} km em linha reta.`,v&&`Miradouro: ${esc(v.x.n)}, a ${nf(v.d/1000)} km.`].filter(Boolean).join("<br>")+`<br><small>Dados do OpenStreetMap; podem estar incompletos.${lido}</small>`;
+ const my=++netSeq;const e0=await elev(st.lat,st.lon);const out=[];
+ for(const OP of["MEO","NOS","Vodafone","DIGI"]){const c=OSM.ant.filter(x=>x.op.includes(OP)).map(x=>({x,d:hav(st.lat,st.lon,x.lat,x.lon)})).filter(z=>z.d<15000).sort((p,q)=>p.d-q.d).slice(0,4);
+  if(!c.length){out.push(`${OP}: sem antena no OpenStreetMap em 15 km.`);continue}
+  if(e0==null){out.push(`${OP}: há antena, sem relevo para a linha de vista.`);continue}
+  let free=false;for(const z of c){const ea=await elev(z.x.lat,z.x.lon);if(ea==null)continue;const top=ea+25;let blk=false;
+   for(const f of[.25,.5,.75]){const la=st.lat+(z.x.lat-st.lat)*f,lo=st.lon+(z.x.lon-st.lon)*f,g=await elev(la,lo);if(g==null)continue;const los=e0+(top-e0)*f,bul=(z.d*f*z.d*(1-f))/(2*6371000);if(g>los+bul+8){blk=true;break}}
+   if(!blk){free=true;break}}
+  out.push(free?`${OP}: linha de vista provável até uma antena (a mais próxima está a ${nf(c[0].d/1000)} km).`:`${OP}: há antena a ${nf(c[0].d/1000)} km, mas o relevo parece tapar. Estimativa.`)}
+ if(my!==netSeq)return;
+ ne.innerHTML="<b style='font-weight:400'>Rede (estimativa):</b><br>"+out.join("<br>")+"<br><small>Confirmar no local. Não é cobertura da operadora. O 112 pode passar quando a chamada já não passa.</small>"}
+function onLoaded(fn){map.loaded()?fn():map.once("load",fn)}
+onLoaded(()=>{map.addSource("sun",{type:"geojson",data:{type:"FeatureCollection",features:[]}});
+ map.addLayer({id:"sunl",type:"line",source:"sun",filter:["==","$type","LineString"],paint:{"line-color":"#ffd27a","line-width":2,"line-dasharray":[2,1]}});
+ map.addLayer({id:"sunp",type:"circle",source:"sun",filter:["==","$type","Point"],paint:{"circle-radius":6,"circle-color":"#000","circle-stroke-color":"#ffd27a","circle-stroke-width":2}});updSun()});
+loadOSM().then(()=>{onLoaded(addOSM);updNear()});
+map.on("styleimagemissing",e=>{if(!map.hasImage(e.id))map.addImage(e.id,{width:1,height:1,data:new Uint8Array(4)})});
+const fsz=()=>document.documentElement.style.setProperty("--fh",document.querySelector("footer").offsetHeight+"px");addEventListener("resize",fsz);fsz();
+loadWarn();loadSt();loadFc();setInterval(()=>{loadWarn();loadSt()},10*60e3);
+</script></body></html>
