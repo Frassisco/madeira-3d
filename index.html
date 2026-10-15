@@ -60,6 +60,7 @@ body.lpo #right{display:none}
 #lp .li i{width:9px;height:9px;flex:none;border:1px solid #fff}
 #lp .li small{margin-left:auto;color:var(--mute);font-size:10px}
 .fd summary{cursor:pointer;padding:7px 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--line);list-style:none}.fd summary:before{content:"+ ";color:var(--mute)}.fd[open]>summary:before{content:"– "}.fd2{margin-left:12px}.fd2 summary{letter-spacing:.12em;font-size:10px;color:#cfd5dd}.fd .li{margin-left:12px}
+.src{color:var(--mute);font-size:9.5px;line-height:1.35;margin:4px 0 6px}
 .hbtn{display:flex;gap:8px;align-items:center}
 .maplibregl-popup-content{background:#050607;color:var(--fg);border:1px solid var(--line);border-radius:0;font-size:12px;line-height:1.45;max-height:42vh;overflow:auto;padding:14px 16px}
 .maplibregl-popup-tip{border-top-color:#050607!important;border-bottom-color:#050607!important}
@@ -84,16 +85,22 @@ body.lpo #right{display:none}
 <div id="map"></div>
 <div class="hud"><div class="c"></div></div>
 <header><h1>MADEIRA&nbsp;3D</h1><div class="hbtn"><button id="btnLay" aria-expanded="false">Camadas</button><button id="btnGpx" title="Descarregar as camadas ligadas em GPX">GPX</button><a class="b112" href="tel:112" aria-label="Ligar 112">SOS&nbsp;112</a></div></header>
-<section id="lp" class="panel" aria-label="Camadas"><h2>Camadas uMap · <span id="lpn">…</span></h2><div id="lpl">A ler…</div><p class="note">Camadas exportadas do mapa uMap 1472181 «Meteo Madeira» (cópia de <span id="lpd"></span>). As camadas ⟳ são vivas no uMap; aqui é a cópia exportada. Camadas grandes levam cluster.</p></section>
+<section id="lp" class="panel" aria-label="Camadas"><h2>Camadas uMap · <span id="lpn">…</span></h2><div id="lpl">A ler…</div><p class="note">Camadas exportadas do mapa uMap 1472181 «Meteo Madeira» (cópia de <span id="lpd"></span>). Licença dos dados do uMap: [POR CONFIRMAR] (cada camada traz as suas fontes na descrição). As camadas ⟳ são vivas no uMap; aqui é a cópia exportada. Camadas grandes levam cluster.</p></section>
 <section id="left" class="panel">
- <h2>Picos</h2><div class="peaks" id="peaks"></div>
- <h2>Sol e sombra · <span id="ptname">Pico do Areeiro</span></h2>
- <div class="ctl"><input type="range" id="hr" min="0" max="23" step="1" aria-label="Hora"><button id="m00">:00</button><button id="m30">:30</button><button id="now">Agora</button></div>
+ <h2>Picos</h2><p class="src">Fonte: Wikidata (CC0) / Wikipédia (CC BY-SA) / OpenStreetMap (ODbL) · PDF «GIGIO 3d»</p><div class="peaks" id="peaks"></div>
+ <h2>Sol e sombra · <span id="ptname">Pico do Areeiro</span></h2><p class="src">Cálculo astronómico local + relevo Terrain Tiles (Mapzen/AWS Open Data; USGS, NOAA, Copernicus) · Licença: ver atribuição no rodapé</p>
+ <div class="ctl"><input type="range" id="hr" min="0" max="23" step="1" aria-label="Hora"><button id="m00">:00</button><button id="m30">:30</button><button id="now">Agora</button><button id="btnSL" aria-pressed="false">Linha do sol</button></div>
  <div id="sun" class="txt">A calcular…</div><div id="shade" class="txt"></div>
  <h2>Pontos OpenStreetMap</h2>
  <div class="lay"><button id="lyPosts" class="on">Postos</button><button id="lyView" class="on">Miradouros</button><button id="lyAid" class="on">Socorro</button><button id="lyAnt">Antenas</button></div>
- <div id="near" class="txt">A ler o OpenStreetMap…</div><div id="net" class="txt"></div>
- <h2>Avisos IPMA · Madeira</h2><div id="warn" class="row">A ler…</div>
+ <div id="near" class="txt">A ler o OpenStreetMap…</div><p class="src">Fonte: © OpenStreetMap (Overpass) · Licença: ODbL · Data: indicada abaixo</p><div id="net" class="txt"></div>
+ <h2>Avisos IPMA · Madeira</h2><div id="warn" class="row">A ler…</div><p class="src">Fonte: IPMA warnings_www.json (áreas MCN, MCS, MRM, MPS) · Licença: uso livre com atribuição [POR CONFIRMAR]</p>
+ <h2 style="margin-top:14px">Índice UV · IPMA</h2><div id="uv">A ler…</div>
+
+ <h2 style="margin-top:14px">Arquivo histórico</h2><div class="lay"><button id="lyArq" class="on">Arquivo histórico</button></div>
+ <p class="src">Fonte: Arquivo e Biblioteca da Madeira (DRABL), catálogo arquivo-abm.madeira.gov.pt · <b>Reutilização: material DRABL só para fins não comerciais</b>, com título, fundo, cota e URL exato (Regulamento Geral DRABL). SIPA (monumentos.gov.pt): CC BY-NC-SA 4.0 [POR CONFIRMAR na própria página]; nenhum registo SIPA usado aqui. Imagens não copiadas: só ligação ao registo original. Coordenadas: o ABM não dá coordenadas; o pin usa o ponto OpenStreetMap (ODbL) com o mesmo nome.</p>
+ <div id="arq" class="txt"></div>
+ <h2 style="margin-top:14px">Camadas de fundo (WMS)</h2><div class="lay"><button id="w_bat">Batimetria</button><button id="w_geo">Geologia</button><button id="w_clc">Uso do solo</button></div><p class="src" id="wmssrc">Nenhuma ligada.</p>
  <h2 style="margin-top:14px">Previsão Open-Meteo · <span id="fcname">Pico do Areeiro</span></h2><div id="fc">A ler…</div>
  <p class="note">Informação de ajuda. Não substitui o IPMA, o IFCN nem a Proteção Civil. Confirmar no local. Hora: Atlantic/Madeira. Valores com mais de 3 h ficam a cinzento.</p>
 </section>
@@ -103,7 +110,7 @@ body.lpo #right{display:none}
 <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ·
 Relevo: <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Terrain Tiles</a> (Mapzen, AWS Open Data; <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener">atribuição</a>): SRTM e GMTED2010 cortesia do U.S. Geological Survey; ETOPO1 U.S. NOAA; dados da Europa produzidos com dados e informação Copernicus financiados pela União Europeia (EU-DEM) ·
 <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0, não comercial) ·
-<a href="https://www.ipma.pt" target="_blank" rel="noopener">IPMA</a> (dados abertos)</footer>
+<a href="https://www.ipma.pt" target="_blank" rel="noopener">IPMA</a> (dados abertos) · EMODnet · LNEG (CC-BY) · CORINE 2018 (Copernicus/EEA) · <a href="https://arquivo-abm.madeira.gov.pt/" target="_blank" rel="noopener">Arquivo e Biblioteca da Madeira</a> (DRABL, só uso não comercial)</footer>
 <script>
 const TZ="Atlantic/Madeira",OLD=3*3600e3;
 const fmt=d=>new Intl.DateTimeFormat("pt-PT",{timeZone:TZ,hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"}).format(d);
@@ -151,31 +158,58 @@ async function loadWarn(){const w=document.getElementById("warn");
   w.innerHTML=act.length?act.map(a=>`<div>${ZONES[a.idAreaAviso]}: ${esc(a.awarenessTypeName)} (${esc(a.awarenessLevelID)}) <small>${fmt(new Date(a.startTime))}–${fmt(new Date(a.endTime))}</small></div>`).join("")+`<small>Lido às ${fmt(now)}. O aviso do IPMA fica como está. Não é uma ordem para ir ou ficar.</small>`
    :`<span>Sem aviso amarelo, laranja ou vermelho nas quatro zonas da Madeira. <small>Lido às ${fmt(now)}.</small></span>`;
  }catch(e){w.textContent="Avisos do IPMA indisponíveis nesta leitura."}}
-/* Estações IPMA */
+/* Estações IPMA: junta observations.json a stations.json por idEstacao; -99 = sem dado ("—"), nunca 0 */
+const okv=v=>typeof v==="number"&&isFinite(v)&&v>-99;
+const sv=(v,u,dp=1)=>okv(v)?(+v).toFixed(dp).replace(".",",")+" "+u:"—";
+const DIRS=["—","N","NE","E","SE","S","SO","O","NO","N"];
 async function loadSt(){const box=document.getElementById("st");
  try{const [s,o]=await Promise.all([fetch("https://api.ipma.pt/open-data/observation/meteorology/stations/stations.json").then(r=>r.json()),
    fetch("https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json").then(r=>r.json())]);
   const mad=s.filter(f=>{const[x,y]=f.geometry.coordinates;return x>-17.45&&x<-16.15&&y>32.5&&y<33.2});
   const times=Object.keys(o).sort();const rows=[];const feats=[];
-  for(const f of mad){const id=String(f.properties.idEstacao);let last=null,t=null;
-   for(const k of times){const v=o[k][id];if(v&&v.temperatura!=null&&v.temperatura>-99){last=v;t=k}}
-   if(!last)continue;const d=new Date(t+(t.endsWith("Z")?"":"Z"));/* IPMA: hora UTC */
-   rows.push({n:f.properties.localEstacao,v:last,d});feats.push({type:"Feature",geometry:f.geometry,properties:{n:f.properties.localEstacao,t:last.temperatura,old:Date.now()-d>OLD}});}
-  rows.sort((a,b)=>a.n.localeCompare(b.n,"pt"));
-  box.innerHTML=rows.length?rows.map(r=>`<div class="row${age(r.d)}"><span>${esc(r.n)}<br><small>${fmt(r.d)}</small></span><span>${r.v.temperatura} °C${r.v.humidade>=0?" · "+r.v.humidade+" %":""}${r.v.intensidadeVentoKM>=0?" · "+r.v.intensidadeVentoKM+" km/h":""}</span></div>`).join(""):"Sem observações das estações da Madeira nesta leitura.";
+  const tD=t=>new Date(t+(t.endsWith("Z")?"":"Z"));/* IPMA: hora UTC */
+  for(const f of mad){const id=String(f.properties.idEstacao);const L={};let tl=null,rain=0,nr=0;
+   for(const k of times){const v=(o[k]||{})[id];if(!v)continue;let any=false;
+    for(const q of["temperatura","humidade","intensidadeVentoKM","idDireccVento","pressao"])if(okv(v[q])){L[q]=v[q];any=true}
+    if(okv(v.precAcumulada)){rain+=v.precAcumulada;nr++;any=true}
+    if(any)tl=k}
+   const d=tl?tD(tl):null;const r={n:f.properties.localEstacao,id,L,d,rain:nr?rain:null,nr};rows.push(r);
+   feats.push({type:"Feature",geometry:f.geometry,properties:{n:r.n,lab:okv(L.temperatura)?nf(L.temperatura)+" °C":"—",old:!d||Date.now()-d>OLD}})}
+  rows.sort((a,b)=>a.n.localeCompare(b.n,"pt"));const T0=times.length?fmt(tD(times[0])):"—",T1=times.length?fmt(tD(times.at(-1))):"—";
+  box.innerHTML=rows.map(r=>`<div class="row${r.d?age(r.d):" old"}"><span>${esc(r.n)}<br><small>${r.d?fmt(r.d):"sem observação nas últimas 24 h"}</small></span><span>${sv(r.L.temperatura,"°C")} · ${sv(r.L.humidade,"%",0)} · ${sv(r.L.intensidadeVentoKM,"km/h")}${okv(r.L.idDireccVento)&&r.L.idDireccVento>0&&okv(r.L.intensidadeVentoKM)?" "+(DIRS[r.L.idDireccVento]||""):""}<br><small>Chuva 24 h: ${r.rain==null?"—":nf(r.rain)+" mm"+(r.nr<24?` (${r.nr} de 24 h)`:"")}</small></span></div>`).join("")
+   +`<p class="src">Fonte: IPMA, dados abertos (stations.json + observations.json) · Observações de ${T0} a ${T1} · Licença: uso livre com atribuição [POR CONFIRMAR o texto exato] · «—» = sem dado (−99 no IPMA). Chuva 24 h = soma de precAcumulada horária.</p>`;
   const add=()=>{if(map.getSource("st"))map.getSource("st").setData({type:"FeatureCollection",features:feats});else{
    map.addSource("st",{type:"geojson",data:{type:"FeatureCollection",features:feats}});
    map.addLayer({id:"st",type:"circle",source:"st",paint:{"circle-radius":5,"circle-color":"#000","circle-stroke-width":1.5,"circle-stroke-color":["case",["get","old"],"#666","#fff"]}});
-   map.addLayer({id:"stl",type:"symbol",source:"st",layout:{"text-field":["concat",["to-string",["get","t"]]," °C"],"text-size":10,"text-offset":[0,1.2],"text-font":["Noto Sans Regular"]},paint:{"text-color":["case",["get","old"],"#666","#fff"],"text-halo-color":"#000","text-halo-width":1}});}};
-  map.loaded()?add():map.once("load",add);
+   map.addLayer({id:"stl",type:"symbol",source:"st",layout:{"text-field":["get","lab"],"text-size":10,"text-offset":[0,1.2],"text-font":["Noto Sans Regular"]},paint:{"text-color":["case",["get","old"],"#666","#fff"],"text-halo-color":"#000","text-halo-width":1}});}};
+  map.loaded()?add():map.once("load",add);window.ST=rows;
  }catch(e){box.textContent="Estações do IPMA indisponíveis nesta leitura."}}
+/* Índice UV (IPMA uv.json; Funchal 2310300, Porto Santo 2320100) */
+async function loadUV(){const b=document.getElementById("uv");
+ try{const j=await fetch("https://api.ipma.pt/open-data/forecast/meteorology/uv/uv.json").then(r=>r.json());
+  const N={2310300:"Funchal",2320100:"Porto Santo"};const a=j.filter(x=>N[x.globalIdLocal]).sort((p,q)=>p.data.localeCompare(q.data));
+  const days=[...new Set(a.map(x=>x.data))].slice(0,3);
+  b.innerHTML=a.length?days.map(d=>`<div class="row"><small>${d.split("-").reverse().slice(0,2).join("/")}</small><span>${Object.entries(N).map(([id,n])=>{const x=a.find(y=>y.data===d&&y.globalIdLocal==id);return n+" "+(x&&+x.iUv>=0?String(x.iUv).replace(".",","):"—")}).join(" · ")}</span></div>`).join("")
+   +`<p class="src">Fonte: IPMA uv.json (previsão do índice UV máximo diário) · Lido às ${fmt(new Date())} · Licença: uso livre com atribuição [POR CONFIRMAR]</p>`:"Sem previsão UV para a Madeira nesta leitura.";
+ }catch(e){b.textContent="Índice UV do IPMA indisponível nesta leitura."}}
+/* Camadas WMS (0 €, sem chave) */
+const WMS={
+ bat:{u:"https://ows.emodnet-bathymetry.eu/wms",l:"emodnet:mean_atlas_land",o:.75,src:"Batimetria: EMODnet Bathymetry (DTM, camada mean_atlas_land) · Licença: CC BY 4.0 [POR CONFIRMAR] · Data: versão em vigor no serviço [POR CONFIRMAR]"},
+ geo:{u:"https://sig.lneg.pt/server/services/CartaMadeira/MapServer/WMSServer",l:"0,1,2,3,4",o:.7,src:"Geologia: LNEG, Carta Geológica Simplificada da Madeira e Porto Santo 1:80 000 · Licença: CC-BY (dados.gov.pt) · Data da edição [POR CONFIRMAR]"},
+ clc:{u:"https://image.discomap.eea.europa.eu/arcgis/services/Corine/CLC2018_WM/MapServer/WMSServer",l:"12",o:.55,src:"Uso do solo: CORINE Land Cover 2018 (EEA/Copernicus) · Licença: acesso livre Copernicus, uso comercial permitido · Cobertura da Madeira [POR CONFIRMAR no visual]"}};
+function wmsSet(k,on){onLoaded(()=>{const W=WMS[k],id="wms_"+k;
+ if(!map.getSource(id)){map.addSource(id,{type:"raster",tileSize:256,tiles:[`${W.u}?service=WMS&request=GetMap&version=1.1.1&layers=${encodeURIComponent(W.l)}&styles=&format=image/png&transparent=true&srs=EPSG:3857&bbox={bbox-epsg-3857}&width=256&height=256`]});
+  map.addLayer({id,type:"raster",source:id,paint:{"raster-opacity":W.o}},map.getLayer("hs")?undefined:undefined)}
+ map.setLayoutProperty(id,"visibility",on?"visible":"none");
+ document.getElementById("wmssrc").innerHTML=Object.keys(WMS).filter(x=>document.getElementById("w_"+x).classList.contains("on")).map(x=>esc(WMS[x].src)).join("<br>")})}
+for(const k of Object.keys(WMS))document.getElementById("w_"+k).onclick=ev=>{const b=ev.currentTarget;b.classList.toggle("on");wmsSet(k,b.classList.contains("on"))};
 /* Previsão Open-Meteo */
 async function loadFc(lat=32.735555555556,lon=-16.928888888889,name="Pico do Areeiro"){const box=document.getElementById("fc");document.getElementById("fcname").textContent=name;
  try{const j=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,precipitation,cloud_cover&hourly=temperature_2m,precipitation_probability,wind_gusts_10m&forecast_hours=15&timezone=UTC&timeformat=unixtime`).then(r=>r.json());
   const c=j.current,d=new Date(c.time*1000);
   let h=`<div class="row${age(d)}"><span>Agora (modelo)<br><small>${fmt(d)}</small></span><span>${c.temperature_2m} °C · ${c.relative_humidity_2m} % · vento ${c.wind_speed_10m} km/h · rajada ${c.wind_gusts_10m} km/h · nuvens ${c.cloud_cover} %</span></div>`;
   const h0=c.time-(c.time%3600);let k=0;j.hourly.time.forEach((t,i)=>{if(t<h0||(k++)%3||k>13)return;h+=`<div class="row"><small>${fmt(new Date(t*1000))}</small><span>${j.hourly.temperature_2m[i]} °C · prob. chuva ${j.hourly.precipitation_probability[i]??"—"} % · rajada ${j.hourly.wind_gusts_10m[i]} km/h</span></div>`});
-  box.innerHTML=h+`<small>Previsão de modelo, não observação. Altitude do modelo: ${j.elevation} m.</small>`;
+  box.innerHTML=h+`<small>Previsão de modelo, não observação. Altitude do modelo: ${j.elevation} m.</small><p class="src">Fonte: Open-Meteo · Lido às ${fmt(new Date())} · Licença: dados CC BY 4.0; API grátis só para uso não comercial</p>`;
  }catch(e){box.textContent="Previsão Open-Meteo indisponível nesta leitura."}}
 
 /* ===== Relevo amostrado (Terrarium, AWS) — fórmula do PDF ===== */
@@ -232,7 +266,7 @@ function parseOSM(j,snap){const o={at:snap?Date.parse(j.osm3s.timestamp_osm_base
  for(const el of j.elements||[]){const lat=el.lat??el.center?.lat,lon=el.lon??el.center?.lon;if(lat==null)continue;const t=el.tags||{};
   if(t.amenity==="fuel")o.fuel.push({n:t.name||t.brand||"Posto sem nome",b:t.brand||null,lat,lon});
   else if(t.tourism==="viewpoint")o.view.push({n:t.name||"Miradouro sem nome",lat,lon});
-  else if(/^(hospital|clinic|fire_station)$/.test(t.amenity||"")||t.emergency==="ambulance_station")o.aid.push({n:t.name||({hospital:"Hospital",clinic:"Centro de saúde/clínica",fire_station:"Bombeiros"}[t.amenity]||"Ambulâncias")+" (sem nome no OSM)",lat,lon});
+  else if(/^(hospital|clinic|fire_station)$/.test(t.amenity||"")||t.emergency==="ambulance_station")o.aid.push({n:t.name||({hospital:"Hospital",clinic:"Centro de saúde/clínica",fire_station:"Bombeiros"}[t.amenity]||"Ambulâncias")+" (sem nome)",lat,lon});
   else if(/^(mast|tower|communications_tower)$/.test(t.man_made||"")){const op=ops(t.operator||t.communication||t.network);if(op.length)o.ant.push({op,lat,lon})}}
  return o}
 const OSMKEY="madeira3d-osm-v2";
@@ -254,7 +288,7 @@ const LAY={lyPosts:"fuel",lyView:"view",lyAid:"aid",lyAnt:"ant"};
 function addOSM(){const col={fuel:"#ffb347",view:"#9fd3ff",aid:"#ff4b4b",ant:"#bbbbbb"};
  for(const[btn,k]of Object.entries(LAY)){map.addSource(k,{type:"geojson",data:gj(OSM[k],k==="ant"?x=>x.op.join(", "):null)});
   map.addLayer({id:k,type:"circle",source:k,layout:{visibility:document.getElementById(btn).classList.contains("on")?"visible":"none"},paint:{"circle-radius":k==="ant"?2.5:4,"circle-color":col[k],"circle-stroke-color":"#000","circle-stroke-width":1}});
-  map.on("click",k,e=>{new maplibregl.Popup({closeButton:false}).setLngLat(e.lngLat).setHTML(`<span style="color:#000">${esc(e.features[0].properties.n)}<br><small>OpenStreetMap</small></span>`).addTo(map)});
+  map.on("click",k,e=>{new maplibregl.Popup({closeButton:false}).setLngLat(e.lngLat).setHTML(`<span style="color:#000">${esc(e.features[0].properties.n)}</span>`).addTo(map)});
   document.getElementById(btn).onclick=ev=>{const b=ev.currentTarget;b.classList.toggle("on");map.setLayoutProperty(k,"visibility",b.classList.contains("on")?"visible":"none")}}}
 function nearest(a){let best=null,d=1/0;for(const x of a){const h=hav(st.lat,st.lon,x.lat,x.lon);if(h<d){d=h;best=x}}return best?{x:best,d}:null}
 let netSeq=0;
@@ -362,5 +396,44 @@ fetch("layers/index.json").then(r=>r.json()).then(ix=>{
   box.appendChild(d)}
  lpShow(innerWidth>760)}).catch(()=>{document.getElementById("lpl").textContent="Camadas indisponíveis (layers/index.json)."});
 
-loadWarn();loadSt();loadFc();setInterval(()=>{loadWarn();loadSt()},10*60e3);
-</script></body></html>
+loadWarn();loadSt();loadFc();loadUV();setInterval(()=>{loadWarn();loadSt()},10*60e3);
+
+/* Arquivo histórico: registos ABM/DRABL de arquivo_regional_fontes.md (15/10/2026). Sem coordenadas inventadas. */
+const ARQ=[{t:"Farol da Ponta do Pargo, Freguesia da Ponta do Pargo, Concelho da Calheta",f:"VPCT (nome completo do fundo [POR CONFIRMAR])",c:"PT/ABM/VPCT/A-B/001/000010",d:"1971",u:"https://arquivo-abm.madeira.gov.pt/descriptions/2786882",lon:-17.2635348,lat:32.8139713,g:"OpenStreetMap nó 4760395432 «Farol» (cópia local osm-snapshot.json)"}];
+const ARQ_PC=[
+ ["Local da derrocada do Cabo do Rancho, Câmara de Lobos","PHF","PT/ABM/PHF/A-D/003/000006","1930-03-04","https://arquivo-abm.madeira.gov.pt/descriptions/2561796"],
+ ["Foz da ribeira do Vigário invadida pelo vagalhão do Cabo do Rancho","PHF","PT/ABM/PHF/A-D/003/000005","1930-03","https://arquivo-abm.madeira.gov.pt/descriptions/2561810"],
+ ["Gravura da igreja de N.ª S.ª do Calhau destruída pela aluvião de 1803","ENP","PT/ABM/ENP/C/006/21-156","[Ant. 1957]","https://arquivo-abm.madeira.gov.pt/descriptions/63557"],
+ ["Capela dos Milagres, Machico, antes da aluvião de 1803 (Frank Dillon)","ENP","PT/ABM/ENP/C/007-016/26-101","s.d.","https://arquivo-abm.madeira.gov.pt/descriptions/64991"],
+ ["Estragos da aluvião no sítio da Banda de Além, Machico","PER","PT/ABM/PER/A-D-B/001/000003","1956-11-03","https://arquivo-abm.madeira.gov.pt/descriptions/778922"],
+ ["Estragos da aluvião na ponte Machico–Caniçal","PER","PT/ABM/PER/A-D-B/001/000002","1956-11-03","https://arquivo-abm.madeira.gov.pt/descriptions/778917"],
+ ["Estrada Machico–Portela, junto à fonte de Santo António (aluvião)","PER","PT/ABM/PER/A-D-B/001/00001/000001","1956-11-03","https://arquivo-abm.madeira.gov.pt/descriptions/778925"],
+ ["Farol de São Lourenço, Caniçal, Machico","JAR","PT/ABM/JAR/A/001/000003","Ant. 1943","https://arquivo-abm.madeira.gov.pt/descriptions/72879"],
+ ["Farol de São Jorge","PER","PT/ABM/PER/J-F/001","s.d.","https://arquivo-abm.madeira.gov.pt/descriptions/2715125"],
+ ["Cais da Calheta","PER","PT/ABM/PER/J-J/001","s.d.","https://arquivo-abm.madeira.gov.pt/descriptions/121592"],
+ ["Cais do Funchal","JAS","PT/ABM/JAS/I/001","Entre 1890 e 1905","https://arquivo-abm.madeira.gov.pt/descriptions/777005"],
+ ["Requerimento sobre a levada do Caminho do Meio","FBM","PT/ABM/FBM/K/001/00002","1748-06-04","https://arquivo-abm.madeira.gov.pt/descriptions/121717"]];
+const arqHtml=r=>`<b>${esc(r.t)}</b><br>Fundo: ${esc(r.f)}<br>Cota: ${esc(r.c)}<br>Data: ${esc(r.d)}<br><a href="${esc(r.u)}" target="_blank" rel="noopener">Registo original (ABM)</a><br><small>Arquivo e Biblioteca da Madeira · uso não comercial · Local: ${esc(r.g)}</small>`;
+document.getElementById("arq").innerHTML=`${ARQ.length} pin no mapa. Sem pin, local [POR CONFIRMAR]:`+ARQ_PC.map(([t,f,c,d,u])=>`<div class="row"><span><small>[POR CONFIRMAR]</small> ${esc(t)}<br><small>Fundo ${esc(f)} · ${esc(c)} · ${esc(d)}</small></span><span><a href="${esc(u)}" target="_blank" rel="noopener">registo</a></span></div>`).join("");
+onLoaded(()=>{map.addSource("arq",{type:"geojson",data:{type:"FeatureCollection",features:ARQ.map((r,i)=>({type:"Feature",geometry:{type:"Point",coordinates:[r.lon,r.lat]},properties:{i}}))}});
+ map.addLayer({id:"arq",type:"circle",source:"arq",paint:{"circle-radius":6,"circle-color":"#000","circle-stroke-color":"#d8b26a","circle-stroke-width":2.5}});
+ map.on("click","arq",e=>{const r=ARQ[e.features[0].properties.i];new maplibregl.Popup({maxWidth:"280px"}).setLngLat([r.lon,r.lat]).setHTML(arqHtml(r)).addTo(map)});
+ map.on("mouseenter","arq",()=>map.getCanvas().style.cursor="pointer");map.on("mouseleave","arq",()=>map.getCanvas().style.cursor="");});
+document.getElementById("lyArq").addEventListener("click",e=>{const b=e.currentTarget;b.classList.toggle("on");onLoaded(()=>map.getLayer("arq")&&map.setLayoutProperty("arq","visibility",b.classList.contains("on")?"visible":"none"))});
+</script><script>/* Linha do sol: centro do mapa -> azimute, 5 km */
+(()=>{let on=false;const b=document.getElementById("btnSL"),E={type:"FeatureCollection",features:[]};
+function sl(){const src=map.getSource("sl");if(!src)return;if(!on){src.setData(E);return}
+ const c=map.getCenter(),t=madeiraToUTC(N0.y,N0.mo,N0.d,st.h,st.m),s=sunPos(t,c.lat,c.lng),R=Math.PI/180,d=5/6371,a=s.az*R,p1=c.lat*R,
+ p2=Math.asin(Math.sin(p1)*Math.cos(d)+Math.cos(p1)*Math.sin(d)*Math.cos(a)),l2=c.lng*R+Math.atan2(Math.sin(a)*Math.sin(d)*Math.cos(p1),Math.cos(d)-Math.sin(p1)*Math.sin(p2)),
+ e=[l2/R,p2/R],up=s.alt>0,lab=up?`☀ az ${Math.round(s.az)}° · alt ${Math.round(s.alt)}°`:`sol abaixo do horizonte (az ${Math.round(s.az)}°, alt ${Math.round(s.alt)}°)`;
+ src.setData({type:"FeatureCollection",features:[{type:"Feature",properties:{up},geometry:{type:"LineString",coordinates:[[c.lng,c.lat],e]}},{type:"Feature",properties:{up,lab},geometry:{type:"Point",coordinates:e}}]})}
+onLoaded(()=>{map.addSource("sl",{type:"geojson",data:E});
+ map.addLayer({id:"sl_up",type:"line",source:"sl",filter:["all",["==","$type","LineString"],["==","up",true]],paint:{"line-color":"#ffb000","line-width":3}});
+ map.addLayer({id:"sl_dn",type:"line",source:"sl",filter:["all",["==","$type","LineString"],["==","up",false]],paint:{"line-color":"#888","line-width":2,"line-dasharray":[2,2]}});
+ map.addLayer({id:"sl_pt",type:"circle",source:"sl",filter:["==","$type","Point"],paint:{"circle-radius":7,"circle-color":["case",["get","up"],"#ffd000","#777"],"circle-stroke-color":"#000","circle-stroke-width":1}});
+ try{map.addLayer({id:"sl_lb",type:"symbol",source:"sl",filter:["==","$type","Point"],layout:{"text-field":["get","lab"],"text-size":12,"text-offset":[0,1.3],"text-anchor":"top"},paint:{"text-color":"#fff","text-halo-color":"#000","text-halo-width":1.5}})}catch(_){}
+ sl()});
+b.onclick=()=>{on=!on;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on);sl()};
+map.on("moveend",sl);hr.addEventListener("input",sl);document.querySelector(".ctl").addEventListener("click",()=>setTimeout(sl,0));})();
+</script>
+</body></html>
