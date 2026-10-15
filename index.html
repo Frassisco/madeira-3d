@@ -51,6 +51,29 @@ input[type=range]{flex:1;min-width:120px;accent-color:#fff;height:44px}
 .maplibregl-canvas-container.maplibregl-interactive:active canvas,
 .maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer:active,
 .maplibregl-canvas-container.maplibregl-interactive.maplibregl-track-pointer:active canvas { cursor: default !important; }
+
+#lp{right:24px;top:84px;width:21rem;max-height:calc(100% - 140px);overflow:auto;display:none}
+#lp.open{display:block}
+body.lpo #right{display:none}
+#lp .li{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;cursor:pointer;min-height:32px}
+#lp .li input{accent-color:#fff;width:16px;height:16px;flex:none}
+#lp .li i{width:9px;height:9px;flex:none;border:1px solid #fff}
+#lp .li small{margin-left:auto;color:var(--mute);font-size:10px}
+.fd summary{cursor:pointer;padding:7px 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--line);list-style:none}.fd summary:before{content:"+ ";color:var(--mute)}.fd[open]>summary:before{content:"– "}.fd2{margin-left:12px}.fd2 summary{letter-spacing:.12em;font-size:10px;color:#cfd5dd}.fd .li{margin-left:12px}
+.hbtn{display:flex;gap:8px;align-items:center}
+.maplibregl-popup-content{background:#050607;color:var(--fg);border:1px solid var(--line);border-radius:0;font-size:12px;line-height:1.45;max-height:42vh;overflow:auto;padding:14px 16px}
+.maplibregl-popup-tip{border-top-color:#050607!important;border-bottom-color:#050607!important}
+.maplibregl-popup-close-button{color:#fff;font-size:18px;width:28px;height:28px;min-height:0;padding:0;border:0}
+.pp h3{margin:0 0 6px;font-weight:300;letter-spacing:.12em;font-size:14px}
+.pp h4{margin:8px 0 2px;font-weight:400;font-size:12px}
+.pp .lyr{color:var(--mute);font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+.pp table{border-collapse:collapse;margin-top:8px;width:100%}.pp td{border-top:1px solid rgba(255,255,255,.08);padding:3px 4px;vertical-align:top;word-break:break-word}
+.pp td:first-child{color:var(--mute);white-space:nowrap}
+.pp button{min-height:36px;margin-top:10px;width:100%}
+.maplibregl-ctrl-group{background:#000;border:1px solid var(--line);border-radius:0}.maplibregl-ctrl-group button{min-height:0;padding:0;border:0}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:invert(1)}
+@media (max-width:760px){body.popm #left,body.popm #lp{display:none!important}body.popm footer{display:none}.maplibregl-popup-content{max-height:48vh}
+#lp{left:0;right:0;top:56px;width:auto;max-height:45%}.hbtn{gap:4px}.hbtn button{min-height:40px;padding:0 8px;letter-spacing:.12em}}
 @media (max-width:760px){
  header{padding:10px 12px}header h1{font-size:13px;letter-spacing:.35em}
  #right{display:none}
@@ -60,7 +83,8 @@ input[type=range]{flex:1;min-width:120px;accent-color:#fff;height:44px}
 </style></head><body>
 <div id="map"></div>
 <div class="hud"><div class="c"></div></div>
-<header><h1>MADEIRA&nbsp;3D</h1><a class="b112" href="tel:112" aria-label="Ligar 112">SOS&nbsp;112</a></header>
+<header><h1>MADEIRA&nbsp;3D</h1><div class="hbtn"><button id="btnLay" aria-expanded="false">Camadas</button><button id="btnGpx" title="Descarregar as camadas ligadas em GPX">GPX</button><a class="b112" href="tel:112" aria-label="Ligar 112">SOS&nbsp;112</a></div></header>
+<section id="lp" class="panel" aria-label="Camadas"><h2>Camadas uMap · <span id="lpn">…</span></h2><div id="lpl">A ler…</div><p class="note">Camadas exportadas do mapa uMap 1472181 «Meteo Madeira» (cópia de <span id="lpd"></span>). As camadas ⟳ são vivas no uMap; aqui é a cópia exportada. Camadas grandes levam cluster.</p></section>
 <section id="left" class="panel">
  <h2>Picos</h2><div class="peaks" id="peaks"></div>
  <h2>Sol e sombra · <span id="ptname">Pico do Areeiro</span></h2>
@@ -256,5 +280,87 @@ onLoaded(()=>{map.addSource("sun",{type:"geojson",data:{type:"FeatureCollection"
 loadOSM().then(()=>{onLoaded(addOSM);updNear()});
 map.on("styleimagemissing",e=>{if(!map.hasImage(e.id))map.addImage(e.id,{width:1,height:1,data:new Uint8Array(4)})});
 const fsz=()=>document.documentElement.style.setProperty("--fh",document.querySelector("footer").offsetHeight+"px");addEventListener("resize",fsz);fsz();
+map.addControl(new maplibregl.FullscreenControl({container:document.body}),"top-right");
+/* ===== Camadas uMap (exportadas para layers/*.geojson) ===== */
+const UL={idx:[],data:{},on:new Set(),cur:null};window.UL=UL;
+const SAFE=/^(https?:|geo:|tel:|mailto:)/i;
+function md(t){/* markdown do uMap -> HTML seguro (tudo escapado primeiro) */
+ let h=esc(t);
+ h=h.replace(/\{\{([^}|]+?)(?:\|[^}]*)?\}\}/g,(m,u)=>{u=u.trim();return SAFE.test(u)?`<a href="${u}" target="_blank" rel="noopener nofollow">[imagem]</a>`:m});
+ h=h.replace(/\[\[([^\]|]+?)(?:\|([^\]]*))?\]\]/g,(m,u,l)=>{u=u.trim();return SAFE.test(u)?`<a href="${u}" target="_blank" rel="noopener nofollow">${l||u}</a>`:(l||u)});
+ h=h.replace(/^### (.*)$/gm,"<h4>$1</h4>").replace(/^## (.*)$/gm,"<h4>$1</h4>").replace(/^# (.*)$/gm,"<h4>$1</h4>");
+ h=h.replace(/\*\*([^*\n]+)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*([^*\n]+)\*/g,"$1<i>$2</i>").replace(/^---$/gm,"<hr>");
+ return h.replace(/\n/g,"<br>").replace(/(<\/h4>)<br>/g,"$1")}
+function plain(t){return String(t??"").replace(/\{\{([^}|]+?)(?:\|[^}]*)?\}\}/g,"$1").replace(/\[\[([^\]|]+?)\|([^\]]*)\]\]/g,"$2 ($1)").replace(/\[\[([^\]]+?)\]\]/g,"$1").replace(/\*\*([^*]+)\*\*/g,"$1").replace(/^#+ /gm,"")}
+const colOf=(f,L)=>(f.properties&&f.properties._umap_options&&f.properties._umap_options.color)||L.color||"#e8eef6";
+async function ulData(i){if(UL.data[i])return UL.data[i];const L=UL.idx[i];const j=await fetch(L.file).then(r=>r.json());
+ j.features.forEach((f,k)=>{f.properties=f.properties||{};f._L=i;f._k=k});UL.data[i]=j;return j}
+function ulAdd(i){const L=UL.idx[i],j=UL.data[i],id="ul"+i;if(map.getSource(id+"p"))return;
+ const mk=(f,k)=>({type:"Feature",geometry:f.geometry,properties:{_L:i,_k:k,_c:colOf(f,L),name:String(f.properties.name??"")}});
+ const pts=[],geo=[];j.features.forEach((f,k)=>{if(!f.geometry)return;(f.geometry.type==="Point"||f.geometry.type==="MultiPoint"?pts:geo).push(mk(f,k))});
+ const cl=L.cluster;
+ map.addSource(id+"g",{type:"geojson",data:{type:"FeatureCollection",features:geo}});
+ map.addSource(id+"p",{type:"geojson",data:{type:"FeatureCollection",features:pts},cluster:cl,clusterRadius:50,clusterMaxZoom:14});
+ map.addLayer({id:id+"f",type:"fill",source:id+"g",filter:["==","$type","Polygon"],paint:{"fill-color":["get","_c"],"fill-opacity":.18}});
+ map.addLayer({id:id+"fl",type:"line",source:id+"g",filter:["==","$type","Polygon"],paint:{"line-color":["get","_c"],"line-width":1}});
+ map.addLayer({id:id+"l",type:"line",source:id+"g",filter:["==","$type","LineString"],paint:{"line-color":["get","_c"],"line-width":2.2}});
+ map.addLayer({id:id+"c",type:"circle",source:id+"p",filter:["has","point_count"],paint:{"circle-radius":["step",["get","point_count"],12,50,16,200,20],"circle-color":"#000c","circle-stroke-color":L.color||"#fff","circle-stroke-width":1.5}});
+ map.addLayer({id:id+"cn",type:"symbol",source:id+"p",filter:["has","point_count"],layout:{"text-field":["get","point_count_abbreviated"],"text-size":10,"text-font":["Noto Sans Regular"],"text-allow-overlap":true},paint:{"text-color":"#fff"}});
+ map.addLayer({id:id+"pt",type:"circle",source:id+"p",filter:["!",["has","point_count"]],paint:{"circle-radius":5,"circle-color":"#000","circle-stroke-color":["get","_c"],"circle-stroke-width":2}});
+ for(const s of["f","l","pt"])map.on("click",id+s,e=>{e.originalEvent._ul=1;const p=e.features[0].properties;ulPopup(UL.data[p._L].features[p._k],e.lngLat)});
+ map.on("click",id+"c",async e=>{e.originalEvent._ul=1;const f=e.features[0];const z=await map.getSource(id+"p").getClusterExpansionZoom(f.properties.cluster_id);map.easeTo({center:f.geometry.coordinates,zoom:z})})}
+const ULS=["f","fl","l","c","cn","pt"];
+async function ulSet(i,v){const id="ul"+i;if(v){UL.on.add(i);await ulData(i);if(!UL.on.has(i))return;await new Promise(r=>onLoaded(r));ulAdd(i)}else UL.on.delete(i);
+ for(const s of ULS)if(map.getLayer(id+s))map.setLayoutProperty(id+s,"visibility",UL.on.has(i)?"visible":"none")}
+function ulPopup(f,ll){UL.cur=f;const L=UL.idx[f._L],p=f.properties;
+ let h=`<div class="pp"><div class="lyr">${esc(L.name)}</div><h3>${esc(p.name??"(sem nome)")}</h3>`;
+ if(p.description!=null&&p.description!=="")h+=`<div>${md(p.description)}</div>`;
+ const rest=Object.keys(p).filter(k=>k!=="name"&&k!=="description");
+ if(rest.length)h+="<table>"+rest.map(k=>{const v=p[k];const t=typeof v==="object"?JSON.stringify(v):String(v);return `<tr><td>${esc(k)}</td><td>${typeof v==="string"?md(v):esc(t)}</td></tr>`}).join("")+"</table>";
+ h+=`<button type="button" class="gpx1">GPX deste pin</button></div>`;
+ const pop=new maplibregl.Popup({maxWidth:"min(360px,86vw)",anchor:"bottom"}).setLngLat(ll).setHTML(h).addTo(map);
+ if(innerWidth<=760){document.body.classList.add("popm");pop.on("close",()=>document.body.classList.remove("popm"))}
+ map.easeTo({center:ll,offset:[0,innerHeight*.28],duration:600});
+ pop.getElement().querySelector(".gpx1").onclick=()=>dl(gpx([f]),(String(p.name||"pin").normalize("NFKD").replace(/[^\w]+/g,"-").replace(/^-|-$/g,"")||"pin")+".gpx")}
+/* ===== GPX ===== */
+const xe=s=>String(s??"").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/g,"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&apos;"}[c]));
+function gpx(fs){let w="",t="";const pt=(c,tag)=>`<${tag} lat="${(+c[1]).toFixed(7)}" lon="${(+c[0]).toFixed(7)}">`;
+ for(const f of fs){const g=f.geometry;if(!g)continue;const p=f.properties||{},n=xe(p.name||""),d=xe(plain(p.description||"")),ly=xe(UL.idx[f._L]?.name||"");
+  const seg=a=>"<trkseg>"+a.map(c=>pt(c,"trkpt")+(c[2]!=null?`<ele>${c[2]}</ele>`:"")+"</trkpt>").join("")+"</trkseg>";
+  const trk=(segs,ty)=>{t+=`<trk><name>${n}</name><desc>${d}</desc><src>${ly}</src><type>${ty}</type>${segs.map(seg).join("")}</trk>\n`};
+  if(g.type==="Point")w+=`${pt(g.coordinates,"wpt")}<name>${n}</name><desc>${d}</desc><src>${ly}</src></wpt>\n`;
+  else if(g.type==="MultiPoint")g.coordinates.forEach(c=>w+=`${pt(c,"wpt")}<name>${n}</name><desc>${d}</desc><src>${ly}</src></wpt>\n`);
+  else if(g.type==="LineString")trk([g.coordinates],"line");else if(g.type==="MultiLineString")trk(g.coordinates,"line");
+  else if(g.type==="Polygon")trk(g.coordinates,"polygon");else if(g.type==="MultiPolygon")trk(g.coordinates.flat(),"polygon")}
+ return `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="Madeira 3D" xmlns="http://www.topografix.com/GPX/1/1">\n<metadata><name>Madeira 3D · uMap 1472181</name><time>${new Date().toISOString()}</time></metadata>\n${w}${t}</gpx>\n`}
+function dl(txt,name){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"application/gpx+xml"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+window.gpxOn=()=>gpx([...UL.on].flatMap(i=>UL.data[i]?.features||[]));
+document.getElementById("btnGpx").onclick=()=>{if(!UL.on.size){alert("Não há camadas ligadas.");return}dl(gpxOn(),"madeira-camadas.gpx")};
+/* ===== painel ===== */
+const lp=document.getElementById("lp"),bl=document.getElementById("btnLay");
+function lpShow(v){lp.classList.toggle("open",v);document.body.classList.toggle("lpo",v);bl.classList.toggle("on",v);bl.setAttribute("aria-expanded",v)}
+bl.onclick=()=>lpShow(!lp.classList.contains("open"));
+fetch("layers/index.json").then(r=>r.json()).then(ix=>{
+ UL.idx=ix.layers.slice().sort((a,b)=>a.name.localeCompare(b.name,"pt"));
+ UL.idx.forEach(L=>{L.cluster=L.umap_type==="Cluster"||L.count>200});
+ document.getElementById("lpn").textContent=UL.idx.length;document.getElementById("lpd").textContent=ix.exported;
+ const box=document.getElementById("lpl");box.innerHTML="";
+ /* pastas Tema → Subcategoria → Nome (§10.1), alfabético */
+ const tree={};UL.idx.forEach((L,i)=>{const p=L.name.split(" · ");const t=p[0],sub=p.length>2?p[1]:"",nm=p.length>1?p.slice(p.length>2?2:1).join(" · "):p[0];
+  ((tree[t]??={})[sub]??=[]).push({i,nm})});
+ const cmp=(a,b)=>a.localeCompare(b,"pt");
+ const row=(i,nm)=>{const L=UL.idx[i],lab=document.createElement("label");lab.className="li";lab.title=L.name;
+  lab.innerHTML=`<input type="checkbox"${L.visible_on_open?" checked":""}><i style="background:${esc(L.color||"transparent")}"></i><span>${esc(nm)}</span><small>${L.count}</small>`;
+  lab.querySelector("input").onchange=e=>ulSet(i,e.target.checked);if(L.visible_on_open)ulSet(i,true);return lab};
+ for(const t of Object.keys(tree).sort(cmp)){const d=document.createElement("details");d.className="fd";
+  const any=Object.values(tree[t]).flat().some(x=>UL.idx[x.i].visible_on_open);d.open=any;
+  d.innerHTML=`<summary>${esc(t)}</summary>`;
+  for(const sub of Object.keys(tree[t]).sort(cmp)){const items=tree[t][sub].sort((a,b)=>cmp(a.nm,b.nm));
+   if(!sub){items.forEach(x=>d.appendChild(row(x.i,x.nm)));continue}
+   const d2=document.createElement("details");d2.className="fd fd2";d2.open=items.some(x=>UL.idx[x.i].visible_on_open);d2.innerHTML=`<summary>${esc(sub)}</summary>`;
+   items.forEach(x=>d2.appendChild(row(x.i,x.nm)));d.appendChild(d2)}
+  box.appendChild(d)}
+ lpShow(innerWidth>760)}).catch(()=>{document.getElementById("lpl").textContent="Camadas indisponíveis (layers/index.json)."});
+
 loadWarn();loadSt();loadFc();setInterval(()=>{loadWarn();loadSt()},10*60e3);
 </script></body></html>
