@@ -1,0 +1,1213 @@
+{
+ "map_id": 1472181,
+ "map_name": "Meteo Madeira – atividades, previsão, estações e webcams (mapa não comercial)",
+ "source": "https://umap.openstreetmap.fr/en/map/1472181/geojson/",
+ "exported": "2026-10-14",
+ "layers": [
+  {
+   "name": "Agricultura · Avisos · Avisos e calendário ⟳",
+   "file": "layers/agricultura-avisos-avisos-e-calendario.geojson",
+   "uuid": "c5b3af6d-7173-46e7-be62-77d708527987",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/c5b3af6d-7173-46e7-be62-77d708527987/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 11,
+   "geometry": {
+    "Point": 11
+   },
+   "umap_type": null,
+   "rank": 0
+  },
+  {
+   "name": "Energia",
+   "file": "layers/energia.geojson",
+   "uuid": "17df9f0e-1ffd-4400-9319-f16b7b32e0d0",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/17df9f0e-1ffd-4400-9319-f16b7b32e0d0/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 166,
+   "geometry": {
+    "Point": 166
+   },
+   "umap_type": null,
+   "rank": 1
+  },
+  {
+   "name": "Energia · Combustível · GPL e GNV",
+   "file": "layers/energia-combustivel-gpl-e-gnv.geojson",
+   "uuid": "a893a32b-2b39-48a7-bef0-861bfb6f247a",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/a893a32b-2b39-48a7-bef0-861bfb6f247a/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 1,
+   "geometry": {
+    "Point": 1
+   },
+   "umap_type": null,
+   "rank": 2
+  },
+  {
+   "name": "Energia · Combustível · Postos e carregamento elétrico",
+   "file": "layers/energia-combustivel-postos-e-carregamento-eletrico.geojson",
+   "uuid": "d202ddb7-ed2f-443f-90ee-6e72eb67a3b2",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/d202ddb7-ed2f-443f-90ee-6e72eb67a3b2/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 166,
+   "geometry": {
+    "Point": 166
+   },
+   "umap_type": null,
+   "rank": 4
+  },
+  {
+   "name": "Energia · Gás · Venda de botijas",
+   "file": "layers/energia-gas-venda-de-botijas.geojson",
+   "uuid": "2201975b-68e3-4d95-afe2-4e317af737ff",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/2201975b-68e3-4d95-afe2-4e317af737ff/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 2,
+   "geometry": {
+    "Point": 2
+   },
+   "umap_type": null,
+   "rank": 5
+  },
+  {
+   "name": "Lazer · Alojamento · Campismo e caravanismo",
+   "file": "layers/lazer-alojamento-campismo-e-caravanismo.geojson",
+   "uuid": "93762064-6b94-4297-87fd-4693e7aca0a5",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/93762064-6b94-4297-87fd-4693e7aca0a5/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 30,
+   "geometry": {
+    "Point": 30
+   },
+   "umap_type": null,
+   "rank": 6
+  },
+  {
+   "name": "Lazer · Bicicleta",
+   "file": "layers/lazer-bicicleta.geojson",
+   "uuid": "f3fd87eb-71c2-4716-b660-4d1fd0a08625",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f3fd87eb-71c2-4716-b660-4d1fd0a08625/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 92,
+   "geometry": {
+    "MultiLineString": 32,
+    "Point": 60
+   },
+   "umap_type": null,
+   "rank": 3
+  },
+  {
+   "name": "Lazer · Desporto · Golfe",
+   "file": "layers/lazer-desporto-golfe.geojson",
+   "uuid": "c8c605d6-1329-4599-a6b2-d7dd5e2d8fe1",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/c8c605d6-1329-4599-a6b2-d7dd5e2d8fe1/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 4,
+   "geometry": {
+    "Polygon": 4
+   },
+   "umap_type": null,
+   "rank": 7
+  },
+  {
+   "name": "Lazer · Percursos · Bicicleta",
+   "file": "layers/lazer-percursos-bicicleta.geojson",
+   "uuid": "21e60b9e-e8ed-4a7a-b327-af69c196ba94",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/21e60b9e-e8ed-4a7a-b327-af69c196ba94/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 92,
+   "geometry": {
+    "MultiLineString": 32,
+    "Point": 60
+   },
+   "umap_type": null,
+   "rank": 8
+  },
+  {
+   "name": "Lazer · Percursos · Offroad",
+   "file": "layers/lazer-percursos-offroad.geojson",
+   "uuid": "b7783ce3-0781-475e-9cf6-2b7445c08900",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/b7783ce3-0781-475e-9cf6-2b7445c08900/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 68,
+   "geometry": {
+    "LineString": 68
+   },
+   "umap_type": null,
+   "rank": 9
+  },
+  {
+   "name": "Mar · Balnear · Praias",
+   "file": "layers/mar-balnear-praias.geojson",
+   "uuid": "b09eda15-fa1d-4f82-80ba-63197e00ed07",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/b09eda15-fa1d-4f82-80ba-63197e00ed07/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 80,
+   "geometry": {
+    "Point": 80
+   },
+   "umap_type": null,
+   "rank": 10
+  },
+  {
+   "name": "Mar · Condições · Estado do mar ⟳",
+   "file": "layers/mar-condicoes-estado-do-mar.geojson",
+   "uuid": "efef7285-13a3-4c9a-9e3a-7b11d7e08647",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/efef7285-13a3-4c9a-9e3a-7b11d7e08647/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 17,
+   "geometry": {
+    "Point": 17
+   },
+   "umap_type": null,
+   "rank": 11
+  },
+  {
+   "name": "Mar · Desporto · Mergulho",
+   "file": "layers/mar-desporto-mergulho.geojson",
+   "uuid": "4b9b30a8-1dfe-4ce4-830e-659034039e62",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/4b9b30a8-1dfe-4ce4-830e-659034039e62/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 2,
+   "geometry": {
+    "Point": 2
+   },
+   "umap_type": null,
+   "rank": 12
+  },
+  {
+   "name": "Mar · Desporto · Pesca",
+   "file": "layers/mar-desporto-pesca.geojson",
+   "uuid": "0079e495-18cc-46ed-be12-cac384321c3d",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/0079e495-18cc-46ed-be12-cac384321c3d/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 26,
+   "geometry": {
+    "Point": 15,
+    "MultiPolygon": 11
+   },
+   "umap_type": null,
+   "rank": 13
+  },
+  {
+   "name": "Mar · Desporto · Surf",
+   "file": "layers/mar-desporto-surf.geojson",
+   "uuid": "b51567e8-61cc-4c66-ae70-7721fef8875e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/b51567e8-61cc-4c66-ae70-7721fef8875e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 26,
+   "geometry": {
+    "Point": 26
+   },
+   "umap_type": null,
+   "rank": 14
+  },
+  {
+   "name": "Mobilidade · Estacionamento · Bicicletas",
+   "file": "layers/mobilidade-estacionamento-bicicletas.geojson",
+   "uuid": "a036c510-2550-48b2-8844-f7c376b41527",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/a036c510-2550-48b2-8844-f7c376b41527/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 22,
+   "geometry": {
+    "Point": 22
+   },
+   "umap_type": null,
+   "rank": 15
+  },
+  {
+   "name": "Mobilidade · Estacionamento · Carros",
+   "file": "layers/mobilidade-estacionamento-carros.geojson",
+   "uuid": "071c6c56-9340-41d4-b4d9-f39cd4084c5c",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/071c6c56-9340-41d4-b4d9-f39cd4084c5c/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 426,
+   "geometry": {
+    "Point": 426
+   },
+   "umap_type": "Cluster",
+   "rank": 16
+  },
+  {
+   "name": "Mobilidade · Estacionamento · Motos",
+   "file": "layers/mobilidade-estacionamento-motos.geojson",
+   "uuid": "8fb39ccf-c3c9-4f5c-be24-5fcea8a8038d",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/8fb39ccf-c3c9-4f5c-be24-5fcea8a8038d/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 88,
+   "geometry": {
+    "Point": 88
+   },
+   "umap_type": "Cluster",
+   "rank": 17
+  },
+  {
+   "name": "Mobilidade · Rede viária · Estradas",
+   "file": "layers/mobilidade-rede-viaria-estradas.geojson",
+   "uuid": "ea11cb4f-fcee-4d11-a78f-325b8e909641",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/ea11cb4f-fcee-4d11-a78f-325b8e909641/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 387,
+   "geometry": {
+    "LineString": 387
+   },
+   "umap_type": null,
+   "rank": 19
+  },
+  {
+   "name": "Mobilidade · Transportes · Autocarros – Funchal",
+   "file": "layers/mobilidade-transportes-autocarros-funchal.geojson",
+   "uuid": "0785b50c-7be3-40b7-89c2-21d754bc5077",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/0785b50c-7be3-40b7-89c2-21d754bc5077/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 2368,
+   "geometry": {
+    "Point": 2368
+   },
+   "umap_type": "Cluster",
+   "rank": 20
+  },
+  {
+   "name": "Mobilidade · Transportes · Autocarros – interurbanos",
+   "file": "layers/mobilidade-transportes-autocarros-interurbanos.geojson",
+   "uuid": "b05b8716-1cfd-4fb5-95d6-48ec3f3265ce",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/b05b8716-1cfd-4fb5-95d6-48ec3f3265ce/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 874,
+   "geometry": {
+    "Point": 874
+   },
+   "umap_type": "Cluster",
+   "rank": 22
+  },
+  {
+   "name": "Mobilidade · Transportes · Táxis",
+   "file": "layers/mobilidade-transportes-taxis.geojson",
+   "uuid": "0e9b26e4-7c72-4167-baae-99cd5f42d8ac",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/0e9b26e4-7c72-4167-baae-99cd5f42d8ac/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 59,
+   "geometry": {
+    "Point": 59
+   },
+   "umap_type": null,
+   "rank": 23
+  },
+  {
+   "name": "Montanha · Base jump",
+   "file": "layers/montanha-base-jump.geojson",
+   "uuid": "841cdaf4-dce9-42c4-b1a9-a8379c5dd448",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/841cdaf4-dce9-42c4-b1a9-a8379c5dd448/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 5,
+   "geometry": {
+    "Point": 5
+   },
+   "umap_type": null,
+   "rank": 18
+  },
+  {
+   "name": "Montanha · Canyons",
+   "file": "layers/montanha-canyons.geojson",
+   "uuid": "bc5a5bf7-19e8-4fa9-a250-298977788e21",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/bc5a5bf7-19e8-4fa9-a250-298977788e21/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 259,
+   "geometry": {
+    "Point": 174,
+    "LineString": 85
+   },
+   "umap_type": null,
+   "rank": 21
+  },
+  {
+   "name": "Montanha · Desportos · Base jump",
+   "file": "layers/montanha-desportos-base-jump.geojson",
+   "uuid": "fa459121-effb-4bda-870c-31930fd9fade",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/fa459121-effb-4bda-870c-31930fd9fade/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 5,
+   "geometry": {
+    "Point": 5
+   },
+   "umap_type": null,
+   "rank": 24
+  },
+  {
+   "name": "Montanha · Desportos · Canyons",
+   "file": "layers/montanha-desportos-canyons.geojson",
+   "uuid": "f8ebe182-e207-4907-8276-34ad9448bce9",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f8ebe182-e207-4907-8276-34ad9448bce9/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 259,
+   "geometry": {
+    "Point": 174,
+    "LineString": 85
+   },
+   "umap_type": null,
+   "rank": 27
+  },
+  {
+   "name": "Montanha · Desportos · Escalada",
+   "file": "layers/montanha-desportos-escalada.geojson",
+   "uuid": "1b549248-2513-4cbb-ab39-fc87a9540c45",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/1b549248-2513-4cbb-ab39-fc87a9540c45/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 12,
+   "geometry": {
+    "Point": 12
+   },
+   "umap_type": null,
+   "rank": 29
+  },
+  {
+   "name": "Montanha · Desportos · Parapente",
+   "file": "layers/montanha-desportos-parapente.geojson",
+   "uuid": "c98605c1-943d-46e6-b628-c63d13ca6991",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/c98605c1-943d-46e6-b628-c63d13ca6991/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 53,
+   "geometry": {
+    "Point": 53
+   },
+   "umap_type": null,
+   "rank": 30
+  },
+  {
+   "name": "Montanha · Parapente",
+   "file": "layers/montanha-parapente.geojson",
+   "uuid": "0a0528a2-1297-4d4b-a2c3-b590b2e482f1",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/0a0528a2-1297-4d4b-a2c3-b590b2e482f1/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 53,
+   "geometry": {
+    "Point": 53
+   },
+   "umap_type": null,
+   "rank": 25
+  },
+  {
+   "name": "Montanha · Percursos · Caminho Real",
+   "file": "layers/montanha-percursos-caminho-real.geojson",
+   "uuid": "f5f52d97-fdfb-44be-b7bd-a14361782ef4",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f5f52d97-fdfb-44be-b7bd-a14361782ef4/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 53,
+   "geometry": {
+    "MultiLineString": 6,
+    "Point": 47
+   },
+   "umap_type": null,
+   "rank": 31
+  },
+  {
+   "name": "Montanha · Percursos · Trilhos e levadas",
+   "file": "layers/montanha-percursos-trilhos-e-levadas.geojson",
+   "uuid": "47ae90a2-520b-405d-8c1f-2ab4cd34a41e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/47ae90a2-520b-405d-8c1f-2ab4cd34a41e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 127,
+   "geometry": {
+    "MultiLineString": 43,
+    "Point": 84
+   },
+   "umap_type": null,
+   "rank": 32
+  },
+  {
+   "name": "Montanha · Provas de trail e skyrunning",
+   "file": "layers/montanha-provas-de-trail-e-skyrunning.geojson",
+   "uuid": "3e73a6aa-d1c3-4778-9dd2-d4937bd17518",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/3e73a6aa-d1c3-4778-9dd2-d4937bd17518/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 103,
+   "geometry": {
+    "LineString": 4,
+    "Point": 99
+   },
+   "umap_type": null,
+   "rank": 26
+  },
+  {
+   "name": "Montanha · Provas · Provas de trail e skyrunning",
+   "file": "layers/montanha-provas-provas-de-trail-e-skyrunning.geojson",
+   "uuid": "c244e917-414a-40b5-8b28-32577077db6e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/c244e917-414a-40b5-8b28-32577077db6e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 103,
+   "geometry": {
+    "LineString": 4,
+    "Point": 99
+   },
+   "umap_type": null,
+   "rank": 33
+  },
+  {
+   "name": "Montanha · Trilhos e levadas",
+   "file": "layers/montanha-trilhos-e-levadas.geojson",
+   "uuid": "8b69a100-5969-4ece-abcb-a45d6252b435",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/8b69a100-5969-4ece-abcb-a45d6252b435/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 127,
+   "geometry": {
+    "MultiLineString": 43,
+    "Point": 84
+   },
+   "umap_type": null,
+   "rank": 28
+  },
+  {
+   "name": "Natureza · Céu · Astronomia",
+   "file": "layers/natureza-ceu-astronomia.geojson",
+   "uuid": "7ba3c242-0d09-4e7c-8746-eef658772b43",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/7ba3c242-0d09-4e7c-8746-eef658772b43/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 8,
+   "geometry": {
+    "Point": 8
+   },
+   "umap_type": null,
+   "rank": 34
+  },
+  {
+   "name": "Natureza · Fauna · Birdwatching",
+   "file": "layers/natureza-fauna-birdwatching.geojson",
+   "uuid": "a926dc40-0a70-4431-bf15-2cbe800b2867",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/a926dc40-0a70-4431-bf15-2cbe800b2867/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 5,
+   "geometry": {
+    "Point": 5
+   },
+   "umap_type": null,
+   "rank": 35
+  },
+  {
+   "name": "Natureza · Fauna · Caça",
+   "file": "layers/natureza-fauna-caca.geojson",
+   "uuid": "243f7e07-4df2-4fba-b913-85d7f750f8eb",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/243f7e07-4df2-4fba-b913-85d7f750f8eb/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 1,
+   "geometry": {
+    "Polygon": 1
+   },
+   "umap_type": null,
+   "rank": 36
+  },
+  {
+   "name": "Natureza · Geofísica · Sismos ⟳",
+   "file": "layers/natureza-geofisica-sismos.geojson",
+   "uuid": "7b6f6acb-ab91-47a4-8e0b-384f842855cf",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/7b6f6acb-ab91-47a4-8e0b-384f842855cf/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 4,
+   "geometry": {
+    "Point": 4
+   },
+   "umap_type": null,
+   "rank": 38
+  },
+  {
+   "name": "Natureza · Geologia · Geossítios",
+   "file": "layers/natureza-geologia-geossitios.geojson",
+   "uuid": "d9889df8-35b8-423b-8391-670c7ff48638",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/d9889df8-35b8-423b-8391-670c7ff48638/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 57,
+   "geometry": {
+    "Point": 57
+   },
+   "umap_type": null,
+   "rank": 39
+  },
+  {
+   "name": "Natureza · Paisagem · Miradouros",
+   "file": "layers/natureza-paisagem-miradouros.geojson",
+   "uuid": "c96a360e-879e-477d-9780-c0d72f5ab046",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/c96a360e-879e-477d-9780-c0d72f5ab046/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 565,
+   "geometry": {
+    "Point": 565
+   },
+   "umap_type": "Cluster",
+   "rank": 40
+  },
+  {
+   "name": "Natureza · Proteção · Áreas naturais",
+   "file": "layers/natureza-protecao-areas-naturais.geojson",
+   "uuid": "273f1b2e-9bd9-447d-9f25-6d3f9f7b7e1c",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/273f1b2e-9bd9-447d-9f25-6d3f9f7b7e1c/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 161,
+   "geometry": {
+    "MultiPolygon": 83,
+    "Point": 78
+   },
+   "umap_type": null,
+   "rank": 41
+  },
+  {
+   "name": "Natureza · Sismos ⟳",
+   "file": "layers/natureza-sismos.geojson",
+   "uuid": "3f143d15-8b94-419e-b321-975b50685d23",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/3f143d15-8b94-419e-b321-975b50685d23/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 4,
+   "geometry": {
+    "Point": 4
+   },
+   "umap_type": null,
+   "rank": 37
+  },
+  {
+   "name": "Rede · Móvel · Antenas",
+   "file": "layers/rede-movel-antenas.geojson",
+   "uuid": "08394662-bda8-4283-b35d-35ea15b32e72",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/08394662-bda8-4283-b35d-35ea15b32e72/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 290,
+   "geometry": {
+    "Point": 290
+   },
+   "umap_type": null,
+   "rank": 42
+  },
+  {
+   "name": "Rede · Móvel · Cobertura estimada (relevo)",
+   "file": "layers/rede-movel-cobertura-estimada-relevo.geojson",
+   "uuid": "0cc97256-6446-47cf-b763-341aee0da4d0",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/0cc97256-6446-47cf-b763-341aee0da4d0/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 4,
+   "geometry": {
+    "MultiPolygon": 4
+   },
+   "umap_type": null,
+   "rank": 43
+  },
+  {
+   "name": "Segurança · Mapa · Notas de correção",
+   "file": "layers/seguranca-mapa-notas-de-correcao.geojson",
+   "uuid": "e3235be4-c21e-4d8b-9067-9a25552f5ff3",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/e3235be4-c21e-4d8b-9067-9a25552f5ff3/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 3,
+   "geometry": {
+    "Point": 3
+   },
+   "umap_type": "Cluster",
+   "rank": 44
+  },
+  {
+   "name": "Segurança · Riscos · Área ardida 2024 (EMSR748)",
+   "file": "layers/seguranca-riscos-area-ardida-2024-emsr748.geojson",
+   "uuid": "2689f4df-a384-4e3f-80f7-2c17c6d633a8",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/2689f4df-a384-4e3f-80f7-2c17c6d633a8/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 12,
+   "geometry": {
+    "Polygon": 12
+   },
+   "umap_type": null,
+   "rank": 45
+  },
+  {
+   "name": "Segurança · Riscos · Derrocadas",
+   "file": "layers/seguranca-riscos-derrocadas.geojson",
+   "uuid": "718f5e98-4ce1-4328-a0dc-736b245ca62e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/718f5e98-4ce1-4328-a0dc-736b245ca62e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 52,
+   "geometry": {
+    "Point": 3,
+    "LineString": 48,
+    "Polygon": 1
+   },
+   "umap_type": null,
+   "rank": 47
+  },
+  {
+   "name": "Segurança · Sinal · Zonas de GPS fraco",
+   "file": "layers/seguranca-sinal-zonas-de-gps-fraco.geojson",
+   "uuid": "8e371f2a-afa0-40c4-bea6-25fa8e875c15",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/8e371f2a-afa0-40c4-bea6-25fa8e875c15/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 2,
+   "geometry": {
+    "MultiPolygon": 2
+   },
+   "umap_type": null,
+   "rank": 48
+  },
+  {
+   "name": "Segurança · Socorro · DAE e primeiros socorros",
+   "file": "layers/seguranca-socorro-dae-e-primeiros-socorros.geojson",
+   "uuid": "153aafc0-c303-4a71-bd6e-1796665aa169",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/153aafc0-c303-4a71-bd6e-1796665aa169/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 42,
+   "geometry": {
+    "Point": 42
+   },
+   "umap_type": null,
+   "rank": 50
+  },
+  {
+   "name": "Segurança · Socorro · Meios de socorro",
+   "file": "layers/seguranca-socorro-meios-de-socorro.geojson",
+   "uuid": "6fcf916f-d116-4991-a5eb-60669ec3e2ef",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/6fcf916f-d116-4991-a5eb-60669ec3e2ef/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 143,
+   "geometry": {
+    "Point": 143
+   },
+   "umap_type": null,
+   "rank": 51
+  },
+  {
+   "name": "Serviços · Água · Água potável",
+   "file": "layers/servicos-agua-agua-potavel.geojson",
+   "uuid": "3b60cccf-394b-42bc-9a0f-9b8eeeca07fd",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/3b60cccf-394b-42bc-9a0f-9b8eeeca07fd/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 629,
+   "geometry": {
+    "Point": 629
+   },
+   "umap_type": "Cluster",
+   "rank": 52
+  },
+  {
+   "name": "Serviços · Comércio · Supermercados e mercearias",
+   "file": "layers/servicos-comercio-supermercados-e-mercearias.geojson",
+   "uuid": "e0fcc9cc-2a80-4cba-9df1-8fa15ae40580",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/e0fcc9cc-2a80-4cba-9df1-8fa15ae40580/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 319,
+   "geometry": {
+    "Point": 319
+   },
+   "umap_type": "Cluster",
+   "rank": 53
+  },
+  {
+   "name": "Serviços · Dinheiro · Multibanco / ATM",
+   "file": "layers/servicos-dinheiro-multibanco-atm.geojson",
+   "uuid": "67b460c6-0729-4c97-9800-27578f790ae6",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/67b460c6-0729-4c97-9800-27578f790ae6/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 229,
+   "geometry": {
+    "Point": 229
+   },
+   "umap_type": "Cluster",
+   "rank": 54
+  },
+  {
+   "name": "Serviços · Higiene · Casas de banho e duches",
+   "file": "layers/servicos-higiene-casas-de-banho-e-duches.geojson",
+   "uuid": "f690dca3-46f6-4b41-b014-b6a658ed6af1",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f690dca3-46f6-4b41-b014-b6a658ed6af1/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 294,
+   "geometry": {
+    "Point": 294
+   },
+   "umap_type": "Cluster",
+   "rank": 55
+  },
+  {
+   "name": "Serviços · Internet · Wi-Fi grátis",
+   "file": "layers/servicos-internet-wi-fi-gratis.geojson",
+   "uuid": "62afebea-181e-4129-9f7a-c238f2c55c84",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/62afebea-181e-4129-9f7a-c238f2c55c84/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 155,
+   "geometry": {
+    "Point": 155
+   },
+   "umap_type": "Cluster",
+   "rank": 57
+  },
+  {
+   "name": "Serviços · Públicos · Serviços públicos",
+   "file": "layers/servicos-publicos-servicos-publicos.geojson",
+   "uuid": "f6cbe844-d099-4074-a2e7-a7373812627e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f6cbe844-d099-4074-a2e7-a7373812627e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 170,
+   "geometry": {
+    "Point": 170
+   },
+   "umap_type": null,
+   "rank": 58
+  },
+  {
+   "name": "Serviços · Saúde · Farmácias",
+   "file": "layers/servicos-saude-farmacias.geojson",
+   "uuid": "04c59ec9-73cf-47d8-ba1e-1aca6883516e",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/04c59ec9-73cf-47d8-ba1e-1aca6883516e/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 75,
+   "geometry": {
+    "Point": 75
+   },
+   "umap_type": null,
+   "rank": 59
+  },
+  {
+   "name": "Serviços · Serviços públicos",
+   "file": "layers/servicos-servicos-publicos.geojson",
+   "uuid": "09ebfb65-c43a-4495-a001-2fbcf22c0773",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/09ebfb65-c43a-4495-a001-2fbcf22c0773/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 170,
+   "geometry": {
+    "Point": 170
+   },
+   "umap_type": null,
+   "rank": 46
+  },
+  {
+   "name": "Serviços · Turismo e correios · Turismo e CTT",
+   "file": "layers/servicos-turismo-e-correios-turismo-e-ctt.geojson",
+   "uuid": "f61b14f5-9dcf-411f-8be3-7b5c79163d64",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/f61b14f5-9dcf-411f-8be3-7b5c79163d64/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 66,
+   "geometry": {
+    "Point": 66
+   },
+   "umap_type": "Cluster",
+   "rank": 60
+  },
+  {
+   "name": "Sociedade · Concelhos (INE)",
+   "file": "layers/sociedade-concelhos-ine.geojson",
+   "uuid": "664996eb-3bcd-4d72-b30c-4072468911ab",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/664996eb-3bcd-4d72-b30c-4072468911ab/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 11,
+   "geometry": {
+    "MultiPolygon": 9,
+    "Polygon": 2
+   },
+   "umap_type": null,
+   "rank": 49
+  },
+  {
+   "name": "Sociedade · Território · Concelhos (INE)",
+   "file": "layers/sociedade-territorio-concelhos-ine.geojson",
+   "uuid": "e22ac8d4-4315-4c75-8a6c-353a9322deae",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/e22ac8d4-4315-4c75-8a6c-353a9322deae/",
+   "color": null,
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 11,
+   "geometry": {
+    "MultiPolygon": 9,
+    "Polygon": 2
+   },
+   "umap_type": null,
+   "rank": 61
+  },
+  {
+   "name": "Tempo · Avisos · Avisos IPMA ⟳",
+   "file": "layers/tempo-avisos-avisos-ipma.geojson",
+   "uuid": "a736ac0c-de39-4cdb-8ace-4c8a37f35089",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/a736ac0c-de39-4cdb-8ace-4c8a37f35089/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 4,
+   "geometry": {
+    "Point": 4
+   },
+   "umap_type": null,
+   "rank": 62
+  },
+  {
+   "name": "Tempo · Chuva · Chuva 24 h (por célula) ⟳",
+   "file": "layers/tempo-chuva-chuva-24-h-por-celula.geojson",
+   "uuid": "dd0db898-f778-431a-8e98-1227760daa33",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/dd0db898-f778-431a-8e98-1227760daa33/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 62,
+   "geometry": {
+    "Point": 62
+   },
+   "umap_type": "Default",
+   "rank": 63
+  },
+  {
+   "name": "Tempo · Incêndios · Incêndios ativos ⟳",
+   "file": "layers/tempo-incendios-incendios-ativos.geojson",
+   "uuid": "221d7e95-d424-4ebd-b309-c9cebc0c9469",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/221d7e95-d424-4ebd-b309-c9cebc0c9469/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 1,
+   "geometry": {
+    "Point": 1
+   },
+   "umap_type": null,
+   "rank": 64
+  },
+  {
+   "name": "Tempo · Observação · Estações ⟳",
+   "file": "layers/tempo-observacao-estacoes.geojson",
+   "uuid": "fcb6b2b7-be0f-4784-a330-b097d71b45d7",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/fcb6b2b7-be0f-4784-a330-b097d71b45d7/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": true,
+   "visible_on_open": true,
+   "count": 23,
+   "geometry": {
+    "Point": 23
+   },
+   "umap_type": "Cluster",
+   "rank": 65
+  },
+  {
+   "name": "Tempo · Observação · Satélite (hoje) ⟳",
+   "file": "layers/tempo-observacao-satelite-hoje.geojson",
+   "uuid": "9db5c355-3030-44f1-9156-f3f75d380ca6",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/9db5c355-3030-44f1-9156-f3f75d380ca6/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 1,
+   "geometry": {
+    "Polygon": 1
+   },
+   "umap_type": null,
+   "rank": 66
+  },
+  {
+   "name": "Tempo · Previsão · Pontos de previsão ⟳",
+   "file": "layers/tempo-previsao-pontos-de-previsao.geojson",
+   "uuid": "280a06a2-a1e2-45c2-b195-267eb821b4ee",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/280a06a2-a1e2-45c2-b195-267eb821b4ee/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 7,
+   "geometry": {
+    "Point": 7
+   },
+   "umap_type": null,
+   "rank": 67
+  },
+  {
+   "name": "Tempo · Satélite NASA (hoje) ⟳",
+   "file": "layers/tempo-satelite-nasa-hoje.geojson",
+   "uuid": "38522a1a-4be4-48b0-b964-634068d79838",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/38522a1a-4be4-48b0-b964-634068d79838/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 1,
+   "geometry": {
+    "Polygon": 1
+   },
+   "umap_type": null,
+   "rank": 56
+  },
+  {
+   "name": "Tempo · Webcams · NetMadeira ⟳",
+   "file": "layers/tempo-webcams-netmadeira.geojson",
+   "uuid": "9ee79b66-4b58-4ec0-95b4-2dda297dc7b4",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/9ee79b66-4b58-4ec0-95b4-2dda297dc7b4/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 28,
+   "geometry": {
+    "Point": 28
+   },
+   "umap_type": "Cluster",
+   "rank": 68
+  },
+  {
+   "name": "Tempo · Webcams · Outras ⟳",
+   "file": "layers/tempo-webcams-outras.geojson",
+   "uuid": "ef92f07e-41a0-4e65-abe2-85e2ceddaee9",
+   "url": "https://umap.openstreetmap.fr/en/datalayer/1472181/ef92f07e-41a0-4e65-abe2-85e2ceddaee9/",
+   "color": "DarkOrange",
+   "icon": null,
+   "iconUrl": null,
+   "displayOnLoad_umap": false,
+   "visible_on_open": false,
+   "count": 29,
+   "geometry": {
+    "Point": 29
+   },
+   "umap_type": "Cluster",
+   "rank": 69
+  }
+ ]
+}
